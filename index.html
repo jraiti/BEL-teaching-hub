@@ -1,0 +1,2067 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UQ HMNS Course Coordinator Hub | Teaching & Learning Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #51247A;
+            --secondary-gold: #FDB71A;
+            --accent-teal: #00A8B5;
+            --dark-purple: #2B1347;
+            --light-lavender: #F5F3F7;
+            --warm-white: #FFFCF7;
+            --text-dark: #1A1A1A;
+            --text-medium: #4A4A4A;
+            --border-subtle: #E0D8E8;
+            --success-green: #00875A;
+            --warning-amber: #FF991F;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, var(--warm-white) 0%, var(--light-lavender) 100%);
+            min-height: 100vh;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: white;
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(81, 36, 122, 0.2);
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(253, 183, 26, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 168, 181, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 400;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(253, 183, 26, 0.2);
+            color: var(--secondary-gold);
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 2px solid rgba(253, 183, 26, 0.3);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: -3rem auto 3rem;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .quick-link-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text-dark);
+            box-shadow: 0 4px 20px rgba(81, 36, 122, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-purple);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom;
+        }
+
+        .quick-link-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(81, 36, 122, 0.15);
+            border-color: var(--primary-purple);
+        }
+
+        .quick-link-card:hover::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .quick-link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .quick-link-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary-purple);
+        }
+
+        .quick-link-desc {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            line-height: 1.5;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-subtle);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid var(--light-lavender);
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            letter-spacing: -0.01em;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            margin-top: 0.5rem;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .resource-card {
+            background: var(--light-lavender);
+            padding: 1.8rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .resource-card:hover {
+            background: white;
+            border-color: var(--accent-teal);
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px rgba(0, 168, 181, 0.15);
+        }
+
+        .resource-card h3 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.4rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .resource-card p {
+            color: var(--text-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+
+            margin-top: 1rem;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: white;
+            color: var(--primary-purple);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            border: 2px solid var(--primary-purple);
+        }
+
+        .resource-link:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(81, 36, 122, 0.2);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(253, 183, 26, 0.1) 0%, rgba(0, 168, 181, 0.1) 100%);
+            border-left: 5px solid var(--secondary-gold);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            color: var(--primary-purple);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary-purple);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .tag.new {
+            background: var(--success-green);
+        }
+
+        .tag.important {
+            background: var(--warning-amber);
+        }
+
+        .tag.ai {
+            background: var(--accent-teal);
+        }
+
+        .accordion {
+            border: 2px solid var(--border-subtle);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .accordion-header {
+            background: var(--light-lavender);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--primary-purple);
+        }
+
+        .accordion-header:hover {
+            background: rgba(81, 36, 122, 0.1);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 2000px;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-purple) 0%, var(--dark-purple) 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-card a {
+            color: var(--secondary-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .contact-card a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .hero-header {
+                padding: 3rem 1rem 2rem;
+            }
+
+            .section {
+                padding: 2rem 1.5rem;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .info-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 168, 181, 0.1);
+            color: var(--accent-teal);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            border: 1px solid rgba(0, 168, 181, 0.2);
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .checklist li:last-child {
+            border-bottom: none;
+        }
+
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 968px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            margin: 3rem 0 1rem;
+            font-style: italic;
+        }
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-60ZZ4GH20Y"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-60ZZ4GH20Y');
+</script>
+</head>
+<body>
+    <header class="hero-header">
+        <div class="hero-content">
+            <div class="hero-badge">Faculty of Business, Economics and Law&nbsp;&nbsp;</div>
+            <h1 class="hero-title">Teaching &amp; Learning Hub</h1>
+            <p class="hero-subtitle">Your comprehensive resource for teaching, learning, and assessment excellence at UQ</p>
+            
+            <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 1.5rem 2rem; border-radius: 16px; margin: 2rem auto 0; max-width: 900px; border: 2px solid rgba(255, 255, 255, 0.2);">
+                <p style="font-size: 1.1rem; line-height: 1.8; margin: 0;">
+                    <strong>👋 Welcome!</strong> This hub is your first port of call for teaching and learning questions. 
+                    Please explore the resources here before reaching out to our wonderful administrative team. 
+                    If you can't find what you need, contact your <strong>BEL Education Team</strong> (<a href="mailto:o.wright@uq.edu.au" style="color: var(--secondary-gold); text-decoration: underline;">education@bel.uq.edu.au</a>) 
+                    who is here to support you.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <div class="quick-links">
+        <a href="#ai-resources" class="quick-link-card">
+            <span class="quick-link-icon">🤖</span>
+            <h3 class="quick-link-title">AI in Teaching</h3>
+            <p class="quick-link-desc">Guidelines, tools, and strategies for AI in education</p>
+        </a>
+        <a href="#secure-assessment" class="quick-link-card">
+            <span class="quick-link-icon">🔒</span>
+            <h3 class="quick-link-title">Secure Assessment</h3>
+            <p class="quick-link-desc">Design assessment with integrity and security</p>
+        </a>
+        <a href="#teaching-guidance" class="quick-link-card">
+            <span class="quick-link-icon">📚</span>
+            <h3 class="quick-link-title">Teaching Guidance</h3>
+            <p class="quick-link-desc">Best practices and pedagogical approaches</p>
+        </a>
+        <a href="#support" class="quick-link-card">
+            <span class="quick-link-icon">💬</span>
+            <h3 class="quick-link-title">Get Support</h3>
+            <p class="quick-link-desc">Connect with ITaLI and teaching experts</p>
+        </a>
+    </div>
+
+    <div class="container">
+        <section class="section" style="background: linear-gradient(135deg, rgba(255, 153, 31, 0.1) 0%, rgba(253, 183, 26, 0.15) 100%); border-left: 5px solid var(--warning-amber); margin-top: -1rem;">
+            <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                <div style="font-size: 3rem; flex-shrink: 0;">🚀</div>
+                <div style="flex: 1;">
+                    <h2 style="font-family: 'Crimson Pro', serif; font-size: 2rem; color: var(--primary-purple); margin-bottom: 0.5rem;">2026 Assessment Updates</h2>
+                    <p style="font-size: 1.1rem; color: var(--text-dark); margin-bottom: 1rem;"><strong>Coming Soon!</strong> Major updates to assessment policy and practice are being finalised for 2026.</p>
+                    <div style="background: white; padding: 1.5rem; border-radius: 12px; margin-top: 1rem;">
+                        <h3 style="font-size: 1.2rem; color: var(--primary-purple); margin-bottom: 1rem;">What to Expect:</h3>
+                        <ul style="margin-left: 1.5rem; line-height: 2; color: var(--text-dark);">
+                            <li><strong>New Assessment Framework:</strong> Updated guidelines reflecting AI integration and contemporary assessment approaches</li>
+                            <li><strong>Secure Assessment Requirements:</strong> Clarification on minimum secure assessment requirements across programs (from Semester 2, 2025)</li>
+                            <li><strong>Course Profile Updates:</strong> New assessment categories and enhanced transparency requirements</li>
+                            <li><strong>AI Assessment Guidance:</strong> Discipline-specific guidance on open and secure assessment design</li>
+                            <li><strong>Support Resources:</strong> Templates, exemplars, and implementation toolkits</li>
+                        </ul>
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(0, 168, 181, 0.1); border-radius: 8px;">
+                            <p style="margin-bottom: 0.8rem;"><strong>📅 Stay Informed:</strong></p>
+                            <p style="margin-bottom: 1rem; font-size: 0.95rem;">Updates will be communicated through Ready to Teach Week (9-13 February), Teaching & Learning newsletters, and this hub. Check back regularly!</p>
+                            <div class="resource-links">
+                                <a href="https://itali.uq.edu.au/teaching-guidance/teaching-assessment-updates" class="resource-link">
+                                    <span>📰</span> Current Updates
+                                </a>
+                                <a href="https://teaching-learning.uq.edu.au/about-us/mission-strategy/learning-student-experience-roadmap" class="resource-link">
+                                    <span>🗺️</span> Strategic Roadmap
+                                </a>
+                                <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">
+                                    <span>🎯</span> Register for R2T Week
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-style: italic; color: var(--text-medium); font-size: 0.95rem;">
+                        💡 <strong>Action Item:</strong> Attend the Ready to Teach Week sessions (9-13 Feb) to hear about assessment updates and ask questions directly to ITaLI staff.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-resources" class="section">
+            <div class="section-header">
+                <span class="section-icon">🤖</span>
+                <div>
+                    <h2 class="section-title">AI in Teaching & Learning</h2>
+                    <p class="section-subtitle">Navigate the AI landscape with confidence and pedagogical insight</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.08) 0%, rgba(0, 168, 181, 0.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--accent-teal); border-radius: 12px; margin-bottom: 2rem; font-style: italic;">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--text-dark);">
+                    "The art of teaching is the art of assisting discovery." <br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">— Mark Van Doren</span>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.95rem; font-style: normal; opacity: 0.9;">
+                    As we navigate AI in education, our role as facilitators of authentic learning becomes even more vital.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎯 Lead Through Learning 2025-2027</h4>
+                <p>UQ's AI Education Action Plan provides a framework for supporting teaching staff and students in responsible AI use. Key updates include enhanced guidance on AI-permitted and secure assessment design.</p>
+                <span class="tag new">Updated 2025</span>
+                <span class="tag ai">Priority Initiative</span>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>Understanding AI</h3>
+                    <p>Foundational knowledge about Generative AI, Machine Translation, and how students are using these tools in their learning journey.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/introducing-ai-and-what-students-think-about-it" class="resource-link">
+                            <span>📖</span> Introduction to AI
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>AI Rules & Academic Integrity</h3>
+                    <p>Clear expectations for AI use in assessment, acknowledgment requirements, and strategies for supporting student integrity.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/generative-ai-teaching-learning-and-assessment/rules-using-ai-assessment" class="resource-link">
+                            <span>📋</span> Assessment Rules
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Teaching Responsible AI Use</h3>
+                    <p>Ethical considerations, classroom discussions, and frameworks for helping students use AI as an effective learning tool.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/teaching-students-use-ai-responsibly" class="resource-link">
+                            <span>🎓</span> Ethics & Teaching
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>AI Tools & Training</h3>
+                    <p>Access to UQ-provided AI tools, training resources, and professional development opportunities for staff.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/ai-access-and-training" class="resource-link">
+                            <span>🛠️</span> Tools & Resources
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Student AI Hub Resources</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>The AI Student Hub provides comprehensive guidance for students on responsible AI use:</strong></p>
+                            <ul class="checklist">
+                                <li>Understanding when and how to use AI ethically in their studies</li>
+                                <li>UQ's rules for using AI in assessment tasks</li>
+                                <li>Proper acknowledgment and referencing of AI tools</li>
+                                <li>Critical evaluation of AI-generated content</li>
+                                <li>Using AI to enhance learning rather than replace it</li>
+                                <li>Access to Microsoft Copilot and Adobe Creative Cloud training</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>Key Hub Sections:</strong></p>
+                            <div class="resource-links" style="margin-top: 1rem;">
+                                <a href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub" class="resource-link">
+                                    <span>🎯</span> Main AI Student Hub
+                                </a>
+                                <a href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ai-for-assessment" class="resource-link">
+                                    <span>📝</span> AI for Assessment
+                                </a>
+                                <a href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/acknowledge-and-reference-ai-use" class="resource-link">
+                                    <span>📚</span> Acknowledge & Reference
+                                </a>
+                                <a href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ethical-and-responsible-ai-use" class="resource-link">
+                                    <span>⚖️</span> Ethical AI Use
+                                </a>
+                            </div>
+                            <p style="margin-top: 1rem; font-style: italic; color: var(--text-medium);">💡 Share these resources with your students in course materials and class discussions</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Designing for AI: Open vs Secure Assessment</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4 style="margin-bottom: 1rem;">Open Assessment (AI-Permitted)</h4>
+                            <p style="margin-bottom: 0.5rem;">Students can use AI tools transparently with proper acknowledgment. Design considerations:</p>
+                            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                                <li>Set clear expectations about AI acknowledgment requirements in course profile</li>
+                                <li>Model effective AI use through scaffolded prompts and examples</li>
+                                <li>Use Microsoft Copilot to simulate AI's role in completing tasks</li>
+                                <li>Design tasks that require synthesis, application, and critical thinking beyond AI capabilities</li>
+                                <li>Consider tasks that ask students to evaluate, critique, or improve AI-generated content</li>
+                            </ul>
+
+                            <h4 style="margin-bottom: 1rem;">Secure Assessment (AI-Restricted)</h4>
+                            <p style="margin-bottom: 0.5rem;">Assessment designed to verify independent student learning without AI assistance:</p>
+                            <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                                <li><strong>Supervised tasks:</strong> In-class exams, invigilated assessments</li>
+                                <li><strong>Oral components:</strong> Viva voce, presentations with Q&A</li>
+                                <li><strong>Real-time demonstrations:</strong> Practical skills, live problem-solving</li>
+                                <li><strong>Scaffolded submissions:</strong> Work developed progressively in supervised settings</li>
+                            </ul>
+
+                            <div style="background: rgba(253, 183, 26, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                                <p><strong>⚠️ Important Policy Update:</strong> From Semester 2, 2025, every course must include at least one secure assessment item. Plan your assessment strategy accordingly.</p>
+                            </div>
+
+                            <div class="resource-links" style="margin-top: 1.5rem;">
+                                <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" class="resource-link">
+                                    <span>📋</span> Full Design Guidance
+                                </a>
+                                <a href="https://itali.uq.edu.au/files/33171/AdaptingRubricsForOpenAssessment.pdf" class="resource-link">
+                                    <span>📄</span> Open Assessment Guide (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="secure-assessment" class="section">
+            <div class="section-header">
+                <span class="section-icon">🔒</span>
+                <div>
+                    <h2 class="section-title">Secure Assessment Design</h2>
+                    <p class="section-subtitle">Ensuring academic integrity and authentic student performance</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.08) 0%, rgba(253, 183, 26, 0.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--secondary-gold); border-radius: 12px; margin-bottom: 2rem; font-style: italic;">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--text-dark);">
+                    "Assessment is not about you as a teacher; it is about your students and their learning." <br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">— Damian Cooper</span>
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎯 UQ Assessment Security Framework</h4>
+                <p>Security is assessed at the program/plan level to ensure graduating students have genuinely completed their studies. Not all assessment items need maximum security - the key is strategic planning across the program.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag important">Policy Update</span>
+                    <span class="info-pill">📄 PPL 3.10.02 Assessment Procedures</span>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); margin-bottom: 1rem;">Secure Assessment Strategies</h3>
+                    <ul class="checklist">
+                        <li><strong>Supervised Tasks:</strong> Invigilated exams and in-class assessments</li>
+                        <li><strong>Secure Questioning:</strong> Student discussions about submitted work in supervised conditions</li>
+                        <li><strong>Scaffolded Submission:</strong> Samples of work developed in supervised settings</li>
+                        <li><strong>Real-time Completion:</strong> Entire tasks completed under supervision</li>
+                        <li><strong>Viva Voce:</strong> Oral examination components (e.g., HLTH7315 approach)</li>
+                        <li><strong>Corroboration:</strong> Work verified by trusted observers (e.g., clinical placements)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); margin-bottom: 1rem;">Assessment Hurdles</h3>
+                    <p style="margin-bottom: 1rem;">Hurdles are assessment requirements that must be satisfied to receive a specific grade. Use the three principles:</p>
+                    <div class="highlight-box" style="margin: 0;">
+                        <p><strong>1. Critical Competency & Security:</strong> Add hurdles only when essential for learning outcomes or to securely assure professional competencies</p>
+                        <p><strong>2. Reasonable Standards:</strong> Set achievable thresholds that demonstrate competency without unnecessary stress</p>
+                        <p><strong>3. Clear Communication:</strong> Explicitly state hurdle requirements, rationale, and consequences in course profiles from day one</p>
+                    </div>
+                    <div style="margin-top: 1.5rem; background: rgba(0, 168, 181, 0.1); padding: 1rem; border-radius: 8px;">
+                        <p style="margin-bottom: 0.5rem;"><strong>Faculty-Specific Hurdle Guidance:</strong></p>
+                        <p style="font-size: 0.95rem; margin-bottom: 0.5rem;">Check with your Faculty for specific hurdle implementation expectations. Examples include:</p>
+                        <ul style="margin-left: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                            <li><strong>Medicine:</strong> Performance hurdles (minimum performance to progress) vs Compliance hurdles (engagement requirements)</li>
+                            <li><strong>Your Faculty:</strong> Contact your Associate Dean (Academic) for faculty-specific hurdle guidance</li>
+                        </ul>
+                        <div class="resource-links" style="margin-top: 1rem;">
+                            <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" class="resource-link">
+                                <span>📋</span> Hurdle Design Principles
+                            </a>
+                            <a href="https://policies.uq.edu.au/document/view-current.php?id=184" class="resource-link">
+                                <span>📜</span> Assessment Procedure (Hurdles)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>Making Assessment Meaningful</h3>
+                    <p>Students are more likely to maintain integrity when assessment is relevant, engaging, and challenging. Design tasks that connect to real-world applications and learning goals.</p>
+
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment" class="resource-link">
+                            <span>💡</span> Assessment Design
+                        </a>
+                        <a href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment/authentic-assessment" class="resource-link">
+                            <span>🎯</span> Authentic Assessment
+                        </a>
+                    </div>
+                    <span class="tag">Best Practice</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Technology for Security</h3>
+                    <p>Use Turnitin for similarity checking, Inspera for secure exams, and Learn.UQ features for electronic submission with timestamp verification.</p>
+                    <div class="resource-links">
+                        <a href="https://elearning.uq.edu.au/staff-guides-original/inspera-assessment/academic-integrity-assessment-security-inspera-original" class="resource-link">
+                            <span>🔧</span> Inspera Guide
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Grade Protection</h3>
+                    <p>Protect assessment integrity through password protection, change tracking, secure storage, and regular review for manipulation attempts.</p>
+                    <div class="resource-links">
+                        <a href="https://ppl.app.uq.edu.au/content/protecting-grade-integrity-guidelines" class="resource-link">
+                            <span>🛡️</span> Grade Integrity
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Assessment Examples</h3>
+                    <p>Explore discipline-specific examples of secure assessment implementation from across UQ faculties, including Health and Behavioural Sciences.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" class="resource-link">
+                            <span>💡</span> View Examples
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Assessment Security Guidelines - Full Framework</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>Teaching staff must give due regard to assessment integrity and security to minimise academic misconduct. Incorporate these elements:</strong></p>
+                            <ol style="margin-left: 1.5rem; line-height: 2;">
+                                <li>Design meaningful, relevant, and engaging assessment tasks</li>
+                                <li>Provide clear expectations about assessment requirements and academic integrity</li>
+                                <li>Use class time to discuss assessment scope, genre, and cognitive demands</li>
+                                <li>Identify situations where misconduct is likely and implement preventive approaches</li>
+                                <li>Support students who may find themselves under pressure</li>
+                                <li>Monitor assessment outcomes and effectiveness regularly</li>
+                                <li>Ensure assessment design prevents memorisation/reproduction from leading to passing grades</li>
+                            </ol>
+                            
+                            <div style="background: linear-gradient(135deg, rgba(0, 168, 181, 0.1) 0%, rgba(0, 168, 181, 0.15) 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--accent-teal); margin-bottom: 1.5rem;">
+                                <p style="font-size: 1.1rem; font-weight: 600; color: var(--primary-purple); margin-bottom: 0.8rem;">📌 Important Context - Don't Panic!</p>
+                                <p style="margin-bottom: 0.8rem;">These are <strong>recommended guidelines for faculty-level program assessment</strong>, not mandatory requirements for every individual course. Here's what this means:</p>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 0.8rem;">
+                                    <li><strong>Program-level, not course-level:</strong> Security is evaluated across an entire program/plan, so individual courses can have different security levels</li>
+                                    <li><strong>Faculty decides thresholds:</strong> Your Associate Dean (Academic), Heads of School, and program convenors set specific requirements for your faculty</li>
+                                    <li><strong>Flexibility by design:</strong> The guidelines acknowledge that prioritising goals other than security is necessary for some assessment items</li>
+                                    <li><strong>Not a universal mandate:</strong> Check with your Associate Dean (Academic) or program convenor for your specific program requirements</li>
+                                </ul>
+                                <p style="margin: 0; font-style: italic; font-size: 0.95rem;">From Semester 2, 2025, the transition will begin to ensure that every course includes <strong>at least one</strong> secure assessment item - this is the main requirement for individual courses.</p>
+                            </div>
+                            
+                            <h4 style="margin: 1.5rem 0 1rem; color: var(--primary-purple);">Program-Level Security Assessment</h4>
+                            <p style="margin-bottom: 1rem;">For program/plan convenors: Security is evaluated at the program/plan level using these <strong>recommended criteria</strong> (adjustable by faculty):</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                                <li><strong>Program level:</strong> Minimum of 75% of core courses are secure</li>
+                                <li><strong>Program level:</strong> Minimum of 67% of flexible core courses are secure</li>
+                            </ul>
+
+                            <h4 style="margin: 1.5rem 0 1rem; color: var(--primary-purple);">Course-Level Security Options</h4>
+                            <p style="margin-bottom: 1rem;">A course is considered secure if it meets ONE of these three options:</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                                <li><strong>Option 1:</strong> 30% high security assessment (by weighting) that is also a hurdle; <strong>OR</strong></li>
+                                <li><strong>Option 2:</strong> 50% high security assessment (by weighting); <strong>OR</strong></li>
+                                <li><strong>Option 3:</strong> 70% medium security assessment (by weighting)</li>
+                            </ul>
+
+                            <div style="margin-top: 1.5rem;">
+                                <a href="https://itali.uq.edu.au/teaching-guidance/assessment/academic-integrity/assessment-security-guidelines" class="resource-link">
+                                    <span>📄</span> Full Security Guidelines
+                                </a>
+                                <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" class="resource-link">
+                                    <span>🔒</span> Securing Assessment Guide
+                                </a>
+                                <a href="https://policies.uq.edu.au/document/view-current.php?id=184" class="resource-link">
+                                    <span>📜</span> Assessment Procedure
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="teaching-guidance" class="section">
+            <div class="section-header">
+                <span class="section-icon">📚</span>
+                <div>
+                    <h2 class="section-title">Teaching & Learning Guidance</h2>
+                    <p class="section-subtitle">Comprehensive resources for effective course coordination</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>Getting Ready to Teach</h3>
+                    <p>Essential preparation activities, Ready to Teach Week resources, and semester startup checklists for course coordinators.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/getting-ready-teach" class="resource-link">
+                            <span>🚀</span> Start Here
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Assessment Design</h3>
+                    <p>Comprehensive guidance on designing valid, authentic, and inclusive assessment. Includes rubrics, feedback strategies, and group work support.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/assessment" class="resource-link">
+                            <span>📋</span> Assessment Hub
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Curriculum Design & Review</h3>
+                    <p>Tools and frameworks for program-level curriculum mapping, course alignment, and collaborative curriculum development.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/curriculum-design-and-review" class="resource-link">
+                            <span>🗺️</span> Curriculum Making
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Teaching Practices</h3>
+                    <p>Evidence-based pedagogical approaches including active learning, problem-based learning, collaborative learning, and reflective practice.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/teaching-practices" class="resource-link">
+                            <span>🎯</span> Explore Practices
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Principles of Learning</h3>
+                    <p>Foundational understanding of how students learn, cognitive load theory, motivation, and designing for deep learning outcomes.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/principles-of-learning" class="resource-link">
+                            <span>🧠</span> Learning Theory
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Learning Spaces & Modes</h3>
+                    <p>Optimize physical and virtual learning environments. Guidance on blended learning, online teaching, and effective use of UQ facilities.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/learning-spaces-and-modes" class="resource-link">
+                            <span>🏛️</span> Space Design
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Indigenising Curriculum</h3>
+                    <p>Resources and support for embedding Indigenous Australian knowledges, perspectives, and pedagogies throughout your courses.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/indigenising-curriculum" class="resource-link">
+                            <span>🪃</span> Indigenous Pedagogy
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Digital Learning Tools</h3>
+                    <p>Master Learn.UQ (Blackboard), Zoom, collaborative tools, and innovative eLearning approaches to enhance student engagement.</p>
+                    <div class="resource-links">
+                        <a href="https://elearning.uq.edu.au/guides" class="resource-link">
+                            <span>💻</span> eLearning Guides
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎓 Professional Development Opportunities</h4>
+                <p>Enhance your teaching expertise through UQ's professional learning programs:</p>
+                <div class="resource-links" style="margin-top: 1rem;">
+                    <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/professional-learning-programs/teaching-practice" class="resource-link">
+                        Teaching in Practice
+                    </a>
+                    <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/professional-learning-programs/curriculum-design-uq" class="resource-link">
+                        Curriculum Design@UQ
+                    </a>
+                    <a href="https://itali.uq.edu.au/events/workshops" class="resource-link">
+                        Workshops & Short Courses
+                    </a>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Course Evaluation & Feedback</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p><strong>UQ uses SECaT (Student Evaluation of Course and Teaching) and SETutor surveys to gather student feedback.</strong></p>
+                            <p style="margin: 1rem 0;">The Course Evaluations System Replacement Project is currently upgrading the platform to provide better insights and more actionable feedback for teaching improvement.</p>
+                            
+                            <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--primary-purple);">Beyond SECaTs: Building Your Teaching Evidence Base</h4>
+                            <p style="margin-bottom: 1rem;">Student evaluations are just one form of evidence. Consider building a comprehensive portfolio including:</p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                                <li>Peer observation reports from Open Course Scheme</li>
+                                <li>Teaching innovations and curriculum redesign projects</li>
+                                <li>Student success data and learning analytics</li>
+                                <li>Teaching awards, grants, and fellowship applications</li>
+                                <li>Reflective teaching statements and philosophy</li>
+                            </ul>
+
+                            <div class="resource-links">
+                                <a href="https://itali.uq.edu.au/advancing-teaching/evaluation-of-teaching" class="resource-link">
+                                    <span>📊</span> Evaluation Resources
+                                </a>
+                                <a href="https://itali.uq.edu.au/advancing-teaching/evaluation-teaching/course-evaluations-system-replacement-project" class="resource-link">
+                                    <span>🔄</span> System Replacement
+                                </a>
+                                <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/peer-support/open-course-scheme" class="resource-link">
+                                    <span>👥</span> Peer Observation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Co-Creating with Students</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p style="margin-bottom: 1rem;"><strong>Engage students as partners in teaching and learning through four approaches:</strong></p>
+                            <ul style="margin-left: 1.5rem; line-height: 2;">
+                                <li><strong>Partnership Classroom:</strong> Foster student agency and ownership through co-creation with all enrolled students</li>
+                                <li><strong>Pedagogical Consultation:</strong> Real-time enhancement with selected students providing feedback as teaching unfolds</li>
+                                <li><strong>Curriculum Co-Design:</strong> Redesign curriculum before, during, or after semester with student input</li>
+                                <li><strong>Knowledge Co-Creation:</strong> Student research contributing to new disciplinary knowledge, including pedagogical knowledge</li>
+                            </ul>
+                            
+                            <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--primary-purple);">Support for Co-Creation</h4>
+                            <p style="margin-bottom: 1rem;">UQ's Student-Staff Partnerships (SSP) projects enable co-design with students in a supportive community with financial grants for student participation.</p>
+
+                            <div style="margin-top: 1rem;">
+                                <a href="https://itali.uq.edu.au/teaching-guidance/curriculum-design-and-review/transforming-curriculum/co-creating-curriculum-students" class="resource-link">
+                                    <span>🤝</span> Co-Creation Guide
+                                </a>
+                                <a href="https://itali.uq.edu.au/advancing-teaching/initiatives/student-staff-partnerships" class="resource-link">
+                                    <span>💡</span> SSP Projects
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🎯</span>
+                <div>
+                    <h2 class="section-title">Additional Resources for Course Coordinators</h2>
+                    <p class="section-subtitle">Essential tools and support services</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>Teaching & Assessment Updates</h3>
+                    <p>Stay current with the latest policy changes, guidelines, and initiatives affecting teaching at UQ. Essential reading for all course coordinators.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/teaching-assessment-updates" class="resource-link">
+                            <span>📰</span> Latest Updates
+                        </a>
+                    </div>
+                    <span class="tag important">Check Regularly</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Peer Support Programs</h3>
+                    <p>Connect with colleagues through Open Course Scheme (peer observation), Communities of Practice, and mentoring opportunities.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/peer-support" class="resource-link">
+                            <span>👥</span> Peer Networks
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Learning Analytics</h3>
+                    <p>Use data-driven insights to understand student engagement, identify at-risk students, and improve course design based on evidence.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/digital-learning/learning-analytics" class="resource-link">
+                            <span>📈</span> Analytics Tools
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Awards, Grants & Fellowships</h3>
+                    <p>Pursue recognition and funding for teaching innovation through UQ Teaching Awards, grants for educational research, and fellowship opportunities.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/advancing-teaching/awards-grants-fellowships" class="resource-link">
+                            <span>🏆</span> Opportunities
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Academic Integrity Support</h3>
+                    <p>Resources for preventing and addressing contract cheating, unauthorised file-sharing, and other integrity issues. Includes student support materials.</p>
+                    <div class="resource-links">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/assessment/academic-integrity" class="resource-link">
+                            <span>⚖️</span> Integrity Resources
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Supporting Diverse Learners</h3>
+                    <p>Inclusive teaching practices, reasonable adjustments, accessibility guidelines, and strategies for supporting students with diverse needs and backgrounds.</p>
+                    <span class="tag">Inclusive Practice</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>UQ Learning & Student Experience Roadmap</h3>
+                    <p>Align your course with UQ's strategic direction for educational excellence (2024-2032), including contemporary assessment, AI integration, and student success priorities.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://teaching-learning.uq.edu.au/about-us/mission-strategy/learning-student-experience-roadmap" class="resource-link">
+                            <span>🎯</span> Roadmap Overview
+                        </a>
+                        <a href="https://about.uq.edu.au/sites/default/files/2024-12/Learning-Student-Experience-Roadmap.pdf" class="resource-link">
+                            <span>📄</span> Download PDF
+                        </a>
+                    </div>
+                    <span class="info-pill">🎯 Strategic Alignment</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Assessment Ideas Factory</h3>
+                    <p>Browse innovative assessment examples from across disciplines. Find inspiration for authentic, engaging, and secure assessment tasks with filters by class size, security level, and assessment type.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://aif.itali.uq.edu.au/" class="resource-link">
+                            <span>💡</span> Browse Ideas
+                        </a>
+                        <a href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment/authentic-assessment" class="resource-link">
+                            <span>🎯</span> Authentic Assessment
+                        </a>
+                    </div>
+                    <span class="tag new">Curated Examples</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">📅</span>
+                <div>
+                    <h2 class="section-title">Professional Development & Upcoming Events</h2>
+                    <p class="section-subtitle">Strategic professional learning opportunities for course coordinators</p>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.1) 0%, rgba(253, 183, 26, 0.1) 100%); border-left-color: var(--primary-purple);">
+                <h4>🚀 Ready to Teach Week Semester 1, 2026</h4>
+                <p style="font-size: 1.05rem; margin-bottom: 1rem;"><strong>9-13 February 2026</strong> | A comprehensive program to prepare you for the upcoming semester</p>
+                <span class="tag important">Registration Open</span>
+                <span class="tag new">Hybrid Format</span>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.08) 0%, rgba(253, 183, 26, 0.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--primary-purple); border-radius: 12px; margin: 2rem 0; font-style: italic;">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--text-dark);">
+                    "Teaching is the one profession that creates all other professions." <br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">— Unknown</span>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.95rem; font-style: normal; opacity: 0.9;">
+                    Your commitment to continuous learning enriches the educational journey of every student you teach.
+                </p>
+            </div>
+
+            <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); font-size: 1.8rem; margin: 2rem 0 1.5rem;">Essential Sessions for Course Coordinators</h3>
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>Monday 9 February:</strong> Lead Through Learning Update & Course Setup</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🎯 Opening Event: Lead through Learning Update</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>9:15am - 10:15am</strong></p>
+                                <p>Updates on Lead through Learning progress including AI education initiatives, key achievements, and 2026 priorities. Essential context for planning your teaching approach.</p>
+                                <span class="info-pill">🎯 Highly Recommended</span>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">💻 What's New in eLearning</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>11:00am - 12:00pm</strong></p>
+                                <p>Overview of Blackboard Ultra's new functions and capabilities. Critical for coordinators managing course sites.</p>
+                                <span class="info-pill">✅ Essential for Course Setup</span>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🎓 Teaching Essentials</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>12:30pm - 1:30pm</strong></p>
+                                <p>Set up key items for effective course management. Covers practical steps to ensure a successful semester start.</p>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">📊 It's Not All About SECaTs: Evidencing Your Teaching Practice</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>2:30pm - 3:30pm</strong></p>
+                                <p>Build an evidence base of teaching quality beyond student evaluations. Valuable for promotion, teaching awards, and professional development portfolios.</p>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>Tuesday 10 February:</strong> AI Integration & Student Support</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🤖 Practical Tips on Preparing Students for Learning With (and Without) Generative AI</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>10:00am - 11:00am</strong></p>
+                                <p><strong>HIGHLY RECOMMENDED FOR COURSE COORDINATORS:</strong> Real insights from staff with AI teaching experience on how to prepare students for responsible AI use. Critical for implementing UQ's AI policies effectively.</p>
+                                <span class="tag ai">Priority Session</span>
+                                <span class="info-pill">🎯 Must Attend</span>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🎥 Lights, Camera, Learning: ITaLI Media Studios Tour</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>9:00am - 10:00am</strong></p>
+                                <p>Explore creative ways to enhance teaching with educational media. Tour the ITaLI studios and learn about available support for video, audio, and multimedia content creation.</p>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🎓 Graduate Certificate in University Teaching Information Session</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>11:15am - 12:00pm</strong></p>
+                                <p>Discover how the GCUTP can advance your teaching career, including pathways to HEA Fellowship and professional recognition.</p>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <h4 style="color: var(--accent-teal); margin-bottom: 0.5rem;">🌏 Inclusive Teaching</h4>
+                                <p style="margin-bottom: 0.5rem;"><strong>12:30pm - 1:30pm</strong></p>
+                                <p>Everyday teaching practices that strengthen belonging and reduce barriers for diverse students. Essential knowledge for all coordinators.</p>
+                                <span class="info-pill">🎯 Highly Recommended</span>
+                                <div class="resource-links" style="margin-top: 0.5rem;">
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">Register</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>Technical Training:</strong> Learn.UQ Ultra & Digital Tools</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <p style="margin-bottom: 1rem;"><strong>Multiple hands-on workshops available throughout the week (9-13 February):</strong></p>
+                            
+                            <ul style="margin-left: 1.5rem; line-height: 2;">
+                                <li><strong>Learn.UQ Ultra Basics</strong> (Multiple sessions daily) - Structured training in UQ's learning management system. <em>Choose the time that works best for you.</em></li>
+                                <li><strong>Learn.UQ Ultra Tests</strong> - Set up multiple-choice, matching, fill-in-blank, and essay questions. Essential for online assessments.</li>
+                                <li><strong>Learn.UQ Ultra Gradebook</strong> - Enter results, calculate final grades, and transfer to SI-net. Critical for assessment management.</li>
+                                <li><strong>Learn.UQ Ultra Assignments</strong> - Set up group assignments, guide student submissions, and manage marking workflows.</li>
+                                <li><strong>Turnitin (Updated)</strong> (Tues 10am-12pm) - New functionality including mark range rubrics, decimal totals, and updated similarity reports.</li>
+                            </ul>
+
+                            <div style="background: rgba(0, 168, 181, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                                <p><strong>💡 Coordinator Tip:</strong> If you're new to Ultra or managing assessments digitally, prioritise Ultra Basics, Turnitin, and Gradebook sessions. These technical skills are fundamental to effective course management.</p>
+                            </div>
+
+                            <div style="background: rgba(253, 183, 26, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                                <p><strong>📋 Registration:</strong> Technical workshops have limited capacity. Register early!</p>
+                                <div class="resource-links" style="margin-top: 0.8rem;">
+                                    <a href="https://www.eventbrite.com/e/1972896228729?aff=oddtdtcreator" class="resource-link">
+                                        <span>🔧</span> Ultra Basics (Eventbrite)
+                                    </a>
+                                    <a href="https://www.eventbrite.com.au/e/turnitin-updated-ready-to-teach-week-tickets-1972897241759?aff=oddtdtcreator" class="resource-link">
+                                        <span>📝</span> Turnitin (Eventbrite)
+                                    </a>
+                                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">
+                                        <span>✅</span> Other Sessions
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span><strong>Additional Valuable Sessions</strong> Throughout the Week</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">📚 Supporting Student Learning</h4>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>How the Library Can Help Your Student's AI Literacy</strong> - Library tools and training for responsible AI use</li>
+                                    <li><strong>Upskill Your Students: Academic Skills Advisers</strong> - Overview of learning support services available to embed in your course</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">🎨 Educational Media Production</h4>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Educational Podcast Production</strong> - Create dynamic audio content for students and industry partners</li>
+                                    <li><strong>Crafting Visuals for Educational Media</strong> - Design effective slide content for delivery</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">🔒 Academic Integrity & AI Assessment</h4>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>How to Prepare Your Students for a Semester of AI</strong> - Communication tools for classroom discussions about responsible AI use</li>
+                                    <li><strong>Using AI to Support Student Learning with Authentic Assessments</strong> - Embed AI meaningfully into assessment design</li>
+                                    <li><strong>An Update on UQ's Academic Integrity Work</strong> - Latest initiatives supporting academic integrity values</li>
+                                </ul>
+                            </div>
+
+                            <div style="margin-bottom: 1rem;">
+                                <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">🪃 Indigenising Curriculum</h4>
+                                <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                    <li><strong>Indigenising the Curriculum Circle of Practice</strong> - Connect with colleagues, share ideas, and build confidence embedding Indigenous perspectives</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 2rem; background: linear-gradient(135deg, rgba(0, 168, 181, 0.1) 0%, rgba(81, 36, 122, 0.1) 100%); border-left-color: var(--accent-teal);">
+                <h4>📝 Registration & Program Details</h4>
+                <p style="margin-bottom: 1rem;">Most sessions are free and available to all UQ teaching staff. Some hands-on workshops have limited capacity - register early to secure your spot.</p>
+                <div class="resource-links">
+                    <a href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" class="resource-link">
+                        <span>✅</span> Register Now
+                    </a>
+                    <a href="https://itali.uq.edu.au/files/33174/Ready-to-Teach-Week-Semester-1-2026-Program.pdf" class="resource-link">
+                        <span>📄</span> Download Full Program (PDF)
+                    </a>
+                    <a href="https://itali.uq.edu.au/events/ready-to-teach-week" class="resource-link">
+                        <span>🔗</span> View All Sessions
+                    </a>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); font-size: 1.8rem; margin: 2.5rem 0 1.5rem;">Other Key Professional Development Events</h3>
+
+            <div class="two-column">
+                <div class="resource-card">
+                    <h3>Ready to Tutor Week</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>24-26 February 2026</strong></p>
+                    <p>If you supervise tutors or teaching assistants, this complementary program supports those new to tutoring with practical skills for leading tutorials, labs, and small group teaching.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/events/ready-to-tutor-week" class="resource-link">View Program</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Teaching & Learning Week</h3>
+                    <p style="margin-bottom: 0.5rem;"><strong>Annual Event - November 2026</strong></p>
+                    <p>Celebrate teaching excellence with workshops, award presentations, and networking. Theme: "Elevate" - focusing on teaching innovation, leadership pathways, and award-winning practices.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/events/teaching-learning-week" class="resource-link">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-column" style="margin-top: 1.5rem;">
+                <div class="resource-card">
+                    <h3>Lead Through Learning Events</h3>
+                    <p>Ongoing series focused on AI education implementation, assessment transformation, and teaching innovation. Regular sessions throughout the academic year.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/event/11630/lead-through-learning" class="resource-link">View Series</a>
+                    </div>
+                    <span class="tag ai">AI Focus</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Communities of Practice</h3>
+                    <p>Regular collaborative meetings on themes like assessment design, digital learning, AI integration, and discipline-specific pedagogy. Join to share ideas and solve challenges with peers.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/events/cop" class="resource-link">Join a Community</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top: 2rem;">
+                <h4>📅 Recommended Professional Development Pathway for New Course Coordinators</h4>
+                <ol style="margin-left: 1.5rem; line-height: 2; margin-top: 1rem;">
+                    <li><strong>Before Semester:</strong> Attend Ready to Teach Week (Lead Through Learning Update, AI sessions, Teaching Essentials, Ultra training)</li>
+                    <li><strong>Early Semester:</strong> Connect with Assessment Transformation Learning Designer for course-specific consultation</li>
+                    <li><strong>Throughout Year:</strong> Join relevant Communities of Practice, attend workshops on specific pedagogies or technologies</li>
+                    <li><strong>For Career Advancement:</strong> Consider Graduate Certificate in University Teaching Practice (GCUTP) for formal qualification and HEA Fellowship</li>
+                    <li><strong>Mid-Year:</strong> Attend Teaching & Learning Week, explore teaching awards and grants opportunities</li>
+                </ol>
+            </div>
+
+            <div class="resource-grid" style="margin-top: 2rem;">
+                <div class="resource-card">
+                    <h3>Ongoing Workshops</h3>
+                    <p>ITaLI offers regular workshops on teaching practices, assessment design, and educational technology throughout the year - not just during special weeks.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/events/workshops" class="resource-link">Browse Workshops</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Open Course Scheme</h3>
+                    <p>Observe colleagues teaching in action, gain new perspectives, and enhance your own practice through peer observation of teaching.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/peer-support/open-course-scheme" class="resource-link">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>Professional Learning Programs</h3>
+                    <p>Structured programs from Teaching@UQ (new academics) to Coordinating@UQ and specialised discipline-based courses.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development" class="resource-link">Explore Programs</a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>eLearning Workshops</h3>
+                    <p>Practical, hands-on training for Blackboard Ultra, Turnitin, Microsoft Teams, Ed Discussion, Inspera, and accessibility tools.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://elearning.uq.edu.au/article/2026/01/ready-teach-and-ready-tutor-weeks-blackboard-ultra-updates" class="resource-link">eLearning Training</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-icon">🤲</span>
+                <div>
+                    <h2 class="section-title">Supporting All Students: Wellbeing & Essential Services</h2>
+                    <p class="section-subtitle">Resources to help you support students from diverse backgrounds and circumstances</p>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, rgba(0, 168, 181, 0.08) 0%, rgba(0, 135, 90, 0.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--success-green); border-radius: 12px; margin-bottom: 2rem; font-style: italic;">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--text-dark);">
+                    "Students don't care how much you know until they know how much you care." <br>
+                    <span style="font-size: 0.9rem; opacity: 0.8;">— Theodore Roosevelt</span>
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.95rem; font-style: normal; opacity: 0.9;">
+                    Supporting the whole student means connecting them with the resources they need to thrive.
+                </p>
+            </div>
+
+            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(0, 168, 181, 0.1) 0%, rgba(0, 135, 90, 0.1) 100%); border-left-color: var(--accent-teal);">
+                <h4>🍽️ Food Security Support - Share with Students in Need</h4>
+                <p style="margin-bottom: 1rem;">Many students face food insecurity. UQ Union provides free and low-cost food support:</p>
+                <div class="two-column" style="margin-bottom: 1rem;">
+                    <div>
+                        <h5 style="color: var(--primary-purple); margin-bottom: 0.8rem;">Morning Marmalade (FREE Breakfast)</h5>
+                        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Mon & Thu:</strong> Muesli cups</li>
+                            <li><strong>Tue & Fri:</strong> Watermelon cups</li>
+                            <li><strong>Wed:</strong> Pancakes</li>
+                            <li><strong>Location:</strong> Ground Floor, Union Complex (St Lucia)</li>
+                            <li><strong>Time:</strong> Breakfast hours</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 style="color: var(--primary-purple); margin-bottom: 0.8rem;">Kampus Kitchen (FREE Dinner)</h5>
+                        <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                            <li><strong>Mon-Fri:</strong> 5:00pm-6:00pm (or until stocks last)</li>
+                            <li><strong>Location:</strong> Ground Floor, Union Complex (next to Boost Juice)</li>
+                            <li><strong>Also at Gatton:</strong> Morrison Hall frozen meals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h5 style="color: var(--primary-purple); margin-bottom: 0.8rem;">Food Co-Op (Free & Low-Cost Groceries)</h5>
+                    <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1rem;">
+                        <li>Range of free and low-cost grocery items</li>
+                        <li><strong>Location:</strong> Ground Floor, Union Complex (opposite pharmacy)</li>
+                        <li><strong>Eligibility:</strong> UQU Mates Rates members (free to join)</li>
+                    </ul>
+                </div>
+                <div class="resource-links">
+                    <a href="https://uqu.com.au/food-co-op/" class="resource-link">
+                        <span>🍎</span> Food Co-Op Info
+                    </a>
+                    <a href="https://my.uq.edu.au/information-and-services/student-support/financial-support" class="resource-link">
+                        <span>💰</span> Financial Support
+                    </a>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); font-size: 1.8rem; margin: 2rem 0 1.5rem;">Supporting Diverse Student Populations</h3>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>🧠 Neurodivergent Students</h3>
+                    <p><strong>The Neurodivergent Hub</strong> supports students who identify as neurodivergent (no diagnosis required) with workshops, mentoring, and peer connections.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Key Programs:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Tertiary Transition Toolbox (orientation for new students)</li>
+                        <li>Peer-led workshops throughout semester</li>
+                        <li>Mentoring program for undergraduate students</li>
+                        <li>Low-light study spaces and quiet rooms</li>
+                    </ul>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/diversity-disability-inclusion/neurodivergent-hub" class="resource-link">
+                            <span>🧠</span> Neurodivergent Hub
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#fb959e8e89949f928d9e899c9e958fbb8e8ad59e9f8ed59a8e" class="resource-link">
+                            <span>📧</span> Contact Team
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>♿ Disability, Medical & Mental Health Support</h3>
+                    <p><strong>Accessibility and Welfare Advisers</strong> help develop Student Access Plans (SAPs) for academic adjustments including extensions, alternative assessments, and exam arrangements.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Support Available:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Student Access Plans (SAPs)</li>
+                        <li>Alternative exam arrangements</li>
+                        <li>Assistive technology and library support</li>
+                        <li>Note-taking and transcription services</li>
+                    </ul>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/diversity-disability-inclusion" class="resource-link">
+                            <span>♿</span> Disability Services
+                        </a>
+                        <a href="tel:1300275870" class="resource-link">
+                            <span>📞</span> Call 1300 275 870
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🪃 Aboriginal & Torres Strait Islander Students</h3>
+                    <p><strong>ATSIS Unit</strong> (Level 2, Bookshop Building) provides a culturally safe space with study areas, kitchen, academic support, and community connection.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Support Includes:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Alternative entry pathways and admissions support</li>
+                        <li>Scholarships and cadetships</li>
+                        <li>Free tutoring and academic workshops</li>
+                        <li>Cultural space and after-hours study access</li>
+                        <li>InspireU camps for prospective students</li>
+                    </ul>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://indigenous-engagement.uq.edu.au/atsisu" class="resource-link">
+                            <span>🪃</span> ATSIS Unit
+                        </a>
+                        <a href="https://indigenous-engagement.uq.edu.au/contact" class="resource-link">
+                            <span>📞</span> Contact ATSIS
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🌏 International Students</h3>
+                    <p><strong>Accessibility and Welfare Team</strong> provides specialised support for international students including cultural adjustment, visa concerns, and wellbeing.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;">Support with academic adjustments, health and wellbeing, and navigating Australian university culture.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/student-advice-welfare" class="resource-link">
+                            <span>🌏</span> International Support
+                        </a>
+                    </div>
+                    <span class="info-pill">Culturally Responsive</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🏳️‍🌈 LGBTQIA+ Students</h3>
+                    <p><strong>UQ Queer Collective</strong> and UQ Ally Network provide community, advocacy, and safe spaces for LGBTQIA+ students.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;">Events, peer support, and resources throughout the year including IDAHOBIT celebrations and support groups.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://uqu.com.au/uqu-collectives/queer-collective/" class="resource-link">
+                            <span>🌈</span> Queer Collective
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🎯 Disability Collective</h3>
+                    <p>Student-run community fostering support for students with disability, chronic illness, mental illness, or who are Deaf.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Spaces & Support:</strong> Campus rooms, online communities (Facebook & Discord), networking events, and peer advocacy.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://uqu.com.au/uqu-collectives/disability-collective/" class="resource-link">
+                            <span>🤝</span> Join Community
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Crimson Pro', serif; color: var(--primary-purple); font-size: 1.8rem; margin: 2rem 0 1.5rem;">Essential Student Services</h3>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>🧠 Mental Health & Counselling</h3>
+                    <p><strong>UQ Counselling</strong> offers free, confidential support including individual counselling, group programs, and crisis support.</p>
+                    <div style="background: rgba(255, 153, 31, 0.1); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p style="font-size: 0.9rem; margin: 0;"><strong>Crisis Support 24/7:</strong></p>
+                        <p style="font-size: 1.1rem; font-weight: 600; color: var(--warning-amber); margin: 0.3rem 0;">📞 1300 851 998 (call)</p>
+                        <p style="font-size: 1.1rem; font-weight: 600; color: var(--warning-amber); margin: 0.3rem 0;">💬 0488 884 115 (text 4:30pm-8am)</p>
+                    </div>
+                    <div class="resource-links">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/health-and-wellbeing/mental-health-and-emotional-support/counselling" class="resource-link">
+                            <span>🧠</span> Book Counselling
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>📚 Academic Skills & Study Support</h3>
+                    <p>Academic Skills Advisers provide free workshops and one-on-one consultations on writing, referencing, time management, and exam preparation.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;">Available for all students, including specialised support for English language learners.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/study-skills" class="resource-link">
+                            <span>📚</span> Academic Skills
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>💰 Financial Support</h3>
+                    <p>Emergency loans, grants, financial counselling, and guidance on Centrelink, scholarships, and budgeting resources.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Includes:</strong> UQ Emergency Loans, financial hardship grants, and support navigating HECS-HELP.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/financial-support" class="resource-link">
+                            <span>💰</span> Financial Help
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🏠 Accommodation & Housing</h3>
+                    <p>Support finding on-campus colleges, off-campus housing, emergency accommodation, and tenancy advice.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/student-support/accommodation" class="resource-link">
+                            <span>🏠</span> Accommodation
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>💼 Careers & Employability</h3>
+                    <p>Resume reviews, interview preparation, career counselling, and access to work experience and graduate job opportunities.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/careers-and-employability" class="resource-link">
+                            <span>💼</span> Career Support
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🛡️ Sexual Misconduct Support</h3>
+                    <p><strong>Sexual Misconduct Support Unit (SMSU)</strong> provides confidential, trauma-informed support for students affected by sexual harassment or assault.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://respect.uq.edu.au/support/sexual-misconduct-support-unit-smsu" class="resource-link">
+                            <span>🛡️</span> SMSU Support
+                        </a>
+                    </div>
+                    <span class="tag important">Confidential</span>
+                </div>
+
+                <div class="resource-card">
+                    <h3>📍 Student Central (Hub for All Services)</h3>
+                    <p>One-stop shop for enrolment, timetabling, ID cards, and connecting to all student support services.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Locations:</strong> Building 42 (St Lucia), Building 8101A (Gatton)</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/contact/student-central" class="resource-link">
+                            <span>📍</span> Student Central
+                        </a>
+                        <a href="tel:1300275870" class="resource-link">
+                            <span>📞</span> 1300 275 870
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>📖 Library Support</h3>
+                    <p>Research assistance, accessible formats, assistive technology rooms, study spaces, and extensive online resources.</p>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://www.library.uq.edu.au/" class="resource-link">
+                            <span>📖</span> UQ Library
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" style="margin-top: 2rem;">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>How Course Coordinators Can Support Student Wellbeing</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-purple);">Practical Strategies:</h4>
+                            <ul style="margin-left: 1.5rem; line-height: 2;">
+                                <li><strong>Include support information in course materials:</strong> Add links to Student Central, counselling, and food support in your Learn.UQ site</li>
+                                <li><strong>Be aware of assessment pressure:</strong> Consider spacing due dates, providing extensions processes, and reducing unnecessary assessment stress</li>
+                                <li><strong>Recognise signs of distress:</strong> Students may struggle with attendance, engagement, or performance. Refer them to support services early</li>
+                                <li><strong>Normalise help-seeking:</strong> Mention available support in class, normalise that many students use these services</li>
+                                <li><strong>Be flexible when needed:</strong> Work with Accessibility and Welfare Advisers to implement Student Access Plans</li>
+                                <li><strong>Know your limits:</strong> You're not a counsellor - refer students to professional support services</li>
+                            </ul>
+
+                            <div style="background: rgba(255, 153, 31, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                                <p style="margin-bottom: 0.5rem;"><strong>⚠️ If You're Concerned About a Student:</strong></p>
+                                <p style="margin-bottom: 0.5rem;">Call UQ Counselling and Crisis Line: <strong>1300 851 998</strong></p>
+                                <p style="margin-bottom: 0.5rem;">Request a welfare check (business hours): Student Support and Wellbeing</p>
+                                <p style="font-size: 0.9rem; margin-top: 1rem;"><strong>Staff Training:</strong> Complete the "Supporting students with mental health conditions" module in Workday for guidance on identifying and supporting students in distress.</p>
+                            </div>
+
+                            <div class="resource-links" style="margin-top: 1.5rem;">
+                                <a href="https://my.uq.edu.au/information-and-services/student-support/health-and-wellbeing/self-help-resources/supporting-distressed-student" class="resource-link">
+                                    <span>📘</span> Supporting Distressed Students Guide
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.05) 0%, rgba(253, 183, 26, 0.05) 100%);">
+            <div class="section-header">
+                <span class="section-icon">🏃</span>
+                <div>
+                    <h2 class="section-title">HMNS Discipline-Specific Resources</h2>
+                    <p class="section-subtitle">Tailored support for our programs in movement, nutrition, and health sciences</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <div class="resource-card">
+                    <h3>🔬 Laboratory & Practical Safety</h3>
+                    <p>For movement science labs, exercise physiology testing, and nutrition practicals: ensure students understand safety protocols before commencing practical work. Consider safety competency as a hurdle requirement to protect students and comply with WHS obligations.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Key Considerations:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Pre-practical safety quizzes or competency checks</li>
+                        <li>Lab induction requirements and documentation</li>
+                        <li>Equipment-specific training and certification</li>
+                        <li>Emergency procedures and incident reporting</li>
+                    </ul>
+                    <span class="tag important">Safety Critical</span>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://staff.uq.edu.au/information-and-services/health-safety-wellbeing/health-safety-workplace/training-induction" class="resource-link">
+                            <span>🔬</span> Lab Safety Training
+                        </a>
+                        <a href="https://policies.uq.edu.au/document/view-current.php?id=427" class="resource-link">
+                            <span>📋</span> Lab Safety Guideline
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>📊 Research Methods & Data Analysis</h3>
+                    <p>Teaching statistical analysis, research design, or biomechanics data? Consider how AI tools can support learning while ensuring students develop core analytical skills through secure assessment.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Balancing AI and Skill Development:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Allow AI for literature reviews and concept explanations</li>
+                        <li>Use supervised exams for statistical interpretation</li>
+                        <li>Require students to justify analysis choices</li>
+                        <li>Include viva voce or presentations to verify understanding</li>
+                    </ul>
+                    <span class="tag ai">AI Considerations</span>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub" class="resource-link">
+                            <span>🤖</span> AI Teacher Hub
+                        </a>
+                        <a href="https://aif.itali.uq.edu.au/" class="resource-link">
+                            <span>💡</span> Assessment Ideas
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>🤝 Community & Industry Partnerships</h3>
+                    <p>Leverage external partnerships for Work Integrated Learning (WIL) placements and authentic assessment opportunities that connect students with real-world practice.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Partnership Opportunities:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li><strong>UQ Sport:</strong> High-performance athlete support and coaching</li>
+                        <li><strong>Local Health Services:</strong> Clinical placements and community health programs</li>
+                        <li><strong>Schools:</strong> Physical education and sports coaching</li>
+                        <li><strong>Sports Clubs:</strong> Coaching practicums and performance analysis</li>
+                        <li><strong>Research Institutes:</strong> QSMC, ACSM partnerships</li>
+                    </ul>
+                    <span class="info-pill">External Engagement</span>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://employability.uq.edu.au/work-integrated-learning" class="resource-link">
+                            <span>💼</span> WIL at UQ
+                        </a>
+                        <a href="https://policies.uq.edu.au/document/view-current.php?id=163" class="resource-link">
+                            <span>📋</span> WIL Policy
+                        </a>
+                    </div>
+                </div>
+
+                <div class="resource-card">
+                    <h3>📝 Professional Writing in Health Sciences</h3>
+                    <p>Develop students' ability to write discipline-specific professional documents. Consider partnering with Academic Skills Advisers for targeted writing support in your course.</p>
+                    <p style="margin-top: 0.8rem; font-size: 0.9rem;"><strong>Discipline-Specific Writing:</strong></p>
+                    <ul style="margin-left: 1.5rem; line-height: 1.6; font-size: 0.9rem;">
+                        <li>Case notes and client documentation</li>
+                        <li>Nutrition care plans and meal plans</li>
+                        <li>Exercise prescription and training programs</li>
+                        <li>Coaching session plans and athlete reports</li>
+                        <li>Research reports and grant proposals</li>
+                    </ul>
+                    <span class="info-pill">Professional Skills</span>
+                    <div class="resource-links" style="margin-top: 1rem;">
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/study-skills/academic-writing" class="resource-link">
+                            <span>✍️</span> Academic Writing Support
+                        </a>
+                        <a href="https://my.uq.edu.au/information-and-services/student-support/study-skills" class="resource-link">
+                            <span>📚</span> Study Skills Team
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion" style="margin-top: 2rem;">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>Discipline-Specific AI Considerations</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-body">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-purple);">AI Use in Different HMNS Contexts:</h4>
+                            
+                            <p style="margin-bottom: 0.8rem;"><strong>✅ Where AI Can Enhance Learning:</strong></p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                                <li>Literature review assistance for research proposals</li>
+                                <li>Generating practice nutrition education materials for client scenarios</li>
+                                <li>Brainstorming coaching session ideas and drills</li>
+                                <li>Creating draft exercise programs for peer review and refinement</li>
+                                <li>Explaining complex biomechanical or physiological concepts</li>
+                            </ul>
+
+                            <p style="margin-bottom: 0.8rem;"><strong>🔒 Where Secure Assessment is Critical:</strong></p>
+                            <ul style="margin-left: 1.5rem; line-height: 1.8;">
+                                <li>Clinical reasoning and decision-making (e.g., nutrition care plans, exercise prescriptions)</li>
+                                <li>Practical skills demonstrations (e.g., fitness testing, coaching delivery)</li>
+                                <li>Professional communication with clients/patients</li>
+                                <li>Emergency response and safety protocols</li>
+                                <li>Ethical decision-making in practice scenarios</li>
+                            </ul>
+
+                            <div style="background: rgba(0, 168, 181, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                                <p><strong>💡 Teaching Tip:</strong> Help students understand that while AI can assist with information gathering and initial drafts, professional competency requires them to critically evaluate, apply, and adapt information to individual client/patient needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.1) 0%, rgba(0, 168, 181, 0.1) 100%); padding: 2.5rem 2rem; margin: 3rem auto; max-width: 1200px; border-radius: 16px; text-align: center; box-shadow: 0 4px 20px rgba(81, 36, 122, 0.1);">
+            <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; color: var(--primary-purple); margin: 0;">
+                "A teacher affects eternity; they can never tell where their influence stops."
+            </p>
+            <p style="font-size: 1rem; margin-top: 0.8rem; opacity: 0.8;">— Henry Adams</p>
+            <p style="font-size: 1rem; margin-top: 1.5rem; font-style: normal; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--text-dark);">
+                Thank you for your dedication to student learning and your commitment to teaching excellence. The impact you make extends far beyond the classroom.
+            </p>
+        </div>
+
+        <section id="support" class="contact-section">
+            <h2>Get Support & Stay Connected</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95;">ITaLI is here to support your teaching excellence journey</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h3>📧 General Enquiries</h3>
+                    <p><a href="/cdn-cgi/l/email-protection#95fce1f4f9fcd5e0e4bbf0f1e0bbf4e0"><span class="__cf_email__" data-cfemail="cba2bfaaa7a28bbebae5aeafbee5aabe">[email&#160;protected]</span></a></p>
+                    <p style="margin-top: 0.5rem;">+61 7 3365 2788</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>🎯 Request Help</h3>
+                    <p>Consultations, course design support, learning design assistance, and technical guidance.</p>
+                    <p style="margin-top: 0.8rem;"><a href="https://itali.uq.edu.au/contact/request-help">Submit Request</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📍 Visit Us</h3>
+                    <p>Learning and Innovation Building (17)</p>
+                    <p>UQ St Lucia Campus</p>
+                    <p style="margin-top: 0.8rem;"><a href="https://maps.uq.edu.au/?campusId=406&zLevel=0&zoom=18&identifier=cef37662-2ee8-4d58-bf53-d07d07e375ed">View Map</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📬 Stay Informed</h3>
+                    <p>Subscribe to the UQ Teaching Community Update for latest news, resources, and opportunities.</p>
+                    <p style="margin-top: 0.8rem;"><a href="http://www.vision6.com.au/em/forms/subscribe.php?db=486997&s=204482&a=80386&k=rAG4BMVHw1rVcD9VLg7Iv8T5N_c5fR_WtXlKVNDH3eY">Subscribe</a></p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(255,255,255,0.2);">
+                <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Assessment Transformation Support</h3>
+                <p style="margin-bottom: 1rem; opacity: 0.95;">Need help redesigning assessment for AI or implementing secure assessment strategies? Connect with an Assessment Transformation Learning Designer for specialised consultation.</p>
+                <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/ai-access-and-training" class="resource-link" style="background: white; color: var(--primary-purple); border-color: white;">
+                    <span>💡</span> Connect with Learning Designer
+                </a>
+            </div>
+        </section>
+
+        <div class="last-updated">
+            Last updated: February 2026 | Data sourced from itali.uq.edu.au<br>
+            <span style="margin-top: 0.5rem; display: block;">For the most current information, always refer to the official ITaLI website and UQ Policy and Procedures Library</span>
+        </div>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Accordion toggle function - available globally for onclick handlers
+        function toggleAccordion(header) {
+            try {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('span:last-child');
+                
+                if (content && arrow) {
+                    content.classList.toggle('active');
+                    arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
+                }
+            } catch (error) {
+                console.error('Accordion error:', error);
+            }
+        }
+
+        // Wait for DOM to be fully loaded before initializing
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Smooth scroll for anchor links
+                document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    });
+                });
+
+                // Add animation on scroll
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.section, .resource-card').forEach(el => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(el);
+                });
+            } catch (error) {
+                console.error('Initialization error:', error);
+            }
+        });
+    </script>
+
+    <!-- Google Analytics (replace YOUR-GA-ID with your actual Google Analytics ID) -->
+    <!-- To set up tracking:
+         1. Go to analytics.google.com
+         2. Create a new property for this hub
+         3. Replace YOUR-GA-ID below with your measurement ID (looks like G-XXXXXXXXXX)
+         4. You'll be able to see visitor counts, popular sections, and more in your GA dashboard
+    -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR-GA-ID');
+    </script>
+</body>
+</html>
+        
+
