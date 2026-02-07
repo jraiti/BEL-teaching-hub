@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UQ | Faculty of Business, Economics & Law — Teaching & Learning Hub</title>
+
+  <!-- Type -->
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* =========================================================
+       UQ | BEL - Theme Tokens
+       ========================================================= */
+    :root {
+      /* UQ masterbrand foundation */
+      --uq-purple: #51247A;          /* Primary */
+      --uq-gold:   #FDB71A;          /* Accent (sparingly) */
+      --uq-ink:    #1A1A1A;          /* Body text */
+      --uq-stone:  #6A6A6A;          /* Muted text */
+      --uq-cloud:  #F5F3F7;          /* Light panels */
+      --uq-white:  #FFFFFF;
+
+      /* BEL-focused refinements */
+      --bel-divider: #E5E1EC;        /* Subtle borders */
+      --bel-hover:   #3E1C5C;        /* Darker purple hover */
+      --bel-link:    #2C3E50;        /* Neutral link colour */
+      --bel-success: #0B7D56;        /* Success */
+      --bel-warning: #C77D0A;        /* Corporate warning tone */
+
+      /* Component tokens */
+      --page-bg: linear-gradient(180deg, #FFFFFF 0%, #FAFAFC 100%);
+      --hero-bg: linear-gradient(135deg, var(--uq-purple) 0%, #3E1C5C 100%);
+      --panel-shadow: 0 4px 18px rgba(81, 36, 122, 0.10);
+    }
+
+    /* =========================================================
+       Base
+       ========================================================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--uq-ink);
+      background: var(--page-bg);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    a { color: var(--bel-link); text-decoration: none; }
+    a:hover { color: var(--uq-purple); text-decoration: underline; }
+
+    /* =========================================================
+       UQ Masthead (Global)
+       ========================================================= */
+    .uq-masthead { background: var(--uq-white); border-bottom: 1px solid var(--bel-divider); }
+    .uq-masthead__inner {
+      max-width: 1400px; margin: 0 auto; padding: .75rem 2rem;
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 1rem;
+    }
+    .uq-logo { display: inline-flex; align-items: center; }
+    .uq-logo img, .uq-logo svg { height: 36px; width: auto; display: block; }
+    .uq-site-id { display:flex; flex-direction: column; line-height: 1.2; }
+    .uq-site-id__faculty { font-weight: 700; color: var(--uq-purple); }
+    .uq-site-id__hub { font-weight: 500; color: var(--uq-ink); opacity: .9; }
+    .uq-utility a { margin-left: 1rem; font-size: .95rem; color: var(--bel-link); }
+    .uq-utility a:hover { color: var(--uq-purple); text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .uq-masthead__inner { grid-template-columns: 1fr; gap: .5rem; }
+      .uq-utility { display:flex; flex-wrap:wrap; gap:.75rem; }
+      .uq-utility a { margin-left: 0; }
+    }
+
+    /* =========================================================
+       Hero
+       ========================================================= */
+    .hero-header {
+      background: var(--hero-bg); color: var(--uq-white);
+      padding: 4rem 2rem 3rem; text-align: center;
+      position: relative; overflow: hidden;
+      box-shadow: 0 8px 28px rgba(81, 36, 122, .18);
+    }
+    .hero-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(253, 183, 26, 0.12) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(81, 36, 122, 0.18) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-14px)} }
+    .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .hero-title {
+      font-family: 'Crimson Pro', Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.01em;
+      animation: fadeInUp .8s ease-out;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 400; opacity: .95;
+      max-width: 800px; margin: 0 auto 2rem; animation: fadeInUp .8s ease-out .2s both;
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(253, 183, 26, .18);
+      color: var(--uq-gold); padding: .5rem 1.5rem; border-radius: 2rem;
+      font-size: .9rem; font-weight: 600; margin-bottom: 1.5rem;
+      border: 2px solid rgba(253, 183, 26, .28); animation: fadeInUp .8s ease-out .4s both;
+    }
+    @keyframes fadeInUp { from {opacity:0; transform: translateY(30px);} to {opacity:1; transform: translateY(0);} }
+
+    /* =========================================================
+       Layout containers
+       ========================================================= */
+    .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .quick-links {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+      margin: -3rem auto 3rem; position: relative; z-index: 2; max-width: 1200px; padding: 0 2rem;
+    }
+
+    /* =========================================================
+       Cards & Links
+       ========================================================= */
+    .quick-link-card {
+      background: var(--uq-white); border-radius: 16px; padding: 2rem; text-decoration: none;
+      color: var(--uq-ink); box-shadow: var(--panel-shadow);
+      transition: all .3s ease; border: 1px solid var(--bel-divider); position: relative; overflow: hidden;
+    }
+    .quick-link-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--uq-purple); transform: scaleY(0); transition: transform .3s ease; transform-origin: bottom;
+    }
+    .quick-link-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--uq-purple);
+      box-shadow: 0 12px 30px rgba(81,36,122,.14);
+    }
+    .quick-link-card:hover::before { transform: scaleY(1); transform-origin: top; }
+    .quick-link-icon { font-size: 2.2rem; margin-bottom: .75rem; display: block; }
+    .quick-link-title { font-family: 'Crimson Pro', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: .35rem; color: var(--uq-purple); }
+    .quick-link-desc { font-size: .95rem; color: var(--uq-stone); line-height: 1.5; }
+
+    .section {
+      background: var(--uq-white); border-radius: 20px; padding: 3rem; margin-bottom: 2rem;
+      box-shadow: var(--panel-shadow); border: 1px solid var(--bel-divider); animation: fadeIn .6s ease-out;
+    }
+    @keyframes fadeIn { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+
+    .section-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; padding-bottom: 1.25rem;
+      border-bottom: 3px solid var(--uq-cloud);
+    }
+    .section-icon { font-size: 2.2rem; flex-shrink: 0; }
+    .section-title { font-family: 'Crimson Pro', serif; font-size: 2.1rem; font-weight: 700; color: var(--uq-purple); letter-spacing: -0.01em; }
+    .section-subtitle { font-size: 1.1rem; color: var(--uq-stone); margin-top: .25rem; }
+
+    .resource-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .resource-card {
+      background: var(--uq-cloud); padding: 1.8rem; border-radius: 12px; transition: all .3s ease;
+      border: 1px solid var(--bel-divider); position: relative;
+    }
+    .resource-card:hover {
+      background: var(--uq-white); border-color: var(--uq-purple);
+      transform: translateX(6px); box-shadow: 0 8px 22px rgba(81,36,122,.14);
+    }
+    .resource-card h3 { font-family: 'Crimson Pro', serif; font-size: 1.35rem; color: var(--uq-purple); margin-bottom: .7rem; font-weight: 700; }
+    .resource-card p { color: var(--uq-ink); font-size: .95rem; line-height: 1.6; margin-bottom: 1rem; }
+    .resource-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1rem; }
+    .resource-link {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem;
+      background: var(--uq-white); color: var(--uq-purple); border-radius: 8px; font-size: .9rem; font-weight: 600;
+      transition: all .2s ease; border: 2px solid var(--uq-purple);
+    }
+    .resource-link:hover { background: var(--uq-purple); color: var(--uq-white); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(81,36,122,.18); }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(253, 183, 26, 0.10) 0%, rgba(81, 36, 122, 0.10) 100%);
+      border-left: 5px solid var(--uq-gold);
+      padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;
+    }
+    .highlight-box h4 { font-family: 'Crimson Pro', serif; font-size: 1.25rem; color: var(--uq-purple); margin-bottom: .8rem; font-weight: 700; }
+
+    .tag {
+      display: inline-block; background: var(--uq-purple); color: var(--uq-white);
+      padding: .3rem .8rem; border-radius: 6px; font-size: .85rem; font-weight: 600; margin: .25rem;
+    }
+    .tag.new { background: var(--bel-success); }
+    .tag.important { background: var(--uq-gold); color: #3A2A00; }
+    .tag.ai { background: var(--uq-purple); }
+
+    .info-pill {
+      display: inline-flex; align-items: center; gap: .5rem; padding: .4rem 1rem;
+      background: rgba(81,36,122,.08); color: var(--uq-purple); border-radius: 20px; font-size: .9rem; font-weight: 600;
+      margin: .5rem .5rem .5rem 0; border: 1px solid rgba(81,36,122,.20);
+    }
+
+    .accordion { border: 1px solid var(--bel-divider); border-radius: 12px; overflow: hidden; margin: 1rem 0; }
+    .accordion-item { border-bottom: 1px solid var(--bel-divider); }
+    .accordion-item:last-child { border-bottom: none; }
+    .accordion-header {
+      background: var(--uq-cloud); padding: 1.25rem 1.5rem; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; transition: all .3s ease;
+      font-weight: 600; font-size: 1.05rem; color: var(--uq-purple);
+    }
+    .accordion-header:hover { background: rgba(81,36,122,.08); }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height .3s ease; background: var(--uq-white); }
+    .accordion-content.active { max-height: 2000px; }
+    .accordion-body { padding: 1.5rem; }
+
+    .checklist { list-style: none; padding: 0; }
+    .checklist li { padding: .8rem 0 .8rem 2rem; position: relative; border-bottom: 1px solid var(--bel-divider); }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before { content: "✓"; position: absolute; left: 0; color: var(--bel-success); font-weight: bold; font-size: 1.2rem; }
+
+    .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
+    @media (max-width: 968px) { .two-column { grid-template-columns: 1fr; } }
+
+    .contact-section {
+      background: var(--hero-bg); color: var(--uq-white); padding: 3rem; border-radius: 20px; margin-top: 3rem; text-align: center;
+    }
+    .contact-section h2 { font-family: 'Crimson Pro', serif; font-size: 2.3rem; margin-bottom: 1rem; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+    .contact-card {
+      background: rgba(255,255,255,.10); padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,.20);
+    }
+    .contact-card h3 { font-size: 1.25rem; margin-bottom: .8rem; }
+    .contact-card a { color: var(--uq-gold); text-decoration: none; font-weight: 600; }
+    .contact-card a:hover { color: var(--uq-white); text-decoration: underline; }
+
+    .last-updated {
+      text-align: center; color: var(--uq-stone); font-size: .9rem; margin: 3rem 0 1rem; font-style: italic;
+    }
+
+    .sr-only { position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+    @media (max-width: 768px) {
+      .hero-header { padding: 3rem 1rem 2rem; }
+      .section { padding: 2rem 1.5rem; }
+      .resource-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* =========================================================
+       Optional BEL quick band (if desired)
+       ========================================================= */
+    .bel-band { background: var(--uq-purple); }
+    .bel-band__inner { max-width: 1200px; margin: 0 auto; padding: .6rem 2rem; display:flex; flex-wrap:wrap; gap:1rem; }
+    .bel-band__inner a { color: var(--uq-white); font-weight: 600; opacity:.95; }
+    .bel-band__inner a:hover { opacity: 1; text-decoration: underline; }
+
+    /* =========================================================
+       UQ Footer
+       ========================================================= */
+    .uq-footer { background: #111; color: #EEE; margin-top: 3rem; }
+    .uq-footer__inner { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+    .uq-ack { font-size: .95rem; opacity: .9; margin-bottom: 1rem; }
+    .uq-footer-nav { display:flex; flex-wrap: wrap; gap: .75rem 1.25rem; margin: 1rem 0; }
+    .uq-footer-nav a { color: #EEE; text-decoration: none; font-size: .95rem; }
+    .uq-footer-nav a:hover { color: var(--uq-gold); }
+    .uq-meta { font-size: .9rem; opacity: .8; }
+
+    /* Arrow icon for <details> summary */
+    details.ap-accordion > summary::after {
+      content: "▶";
+      font-size: 1rem;
+      float: right;
+      transition: transform 0.2s ease;
+      color: var(--uq-purple);
+    }
+    details.ap-accordion[open] > summary::after {
+      transform: rotate(90deg);
+    }
+
+    /* Link states */
+    a:link { color: #51247A; }
+    a:visited { color: #551A8B; }
+    a:hover, a:focus { color: #6A3BAE; text-decoration: underline; }
+    a:active { color: #51247A; }
+
+    /* Back-to-top link */
+    .back-to-top {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-weight: 600; color: var(--uq-purple);
+      margin-top: 1rem;
+    }
+    .back-to-top:hover { color: var(--bel-hover); }
+    .back-to-top::before {
+      content: "↑"; font-weight: 700;
+    }
+	  /* ===== Floating Back to Top Button ===== */
+#floating-back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--uq-purple);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 16px rgba(81,36,122,0.25);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 999;
+}
+
+#floating-back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#floating-back-to-top:hover {
+  background: var(--bel-hover);
+}
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-60ZZ4GH20Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-60ZZ4GH20Y');
+  </script>
+</head>
+
+<body>
+  <div id="top" class="sr-only" aria-hidden="true">Top</div>
+
+  <!-- UQ Global Masthead -->
+  <header class="uq-masthead" aria-label="UQ masthead">
+    <div class="uq-masthead__inner">
+      <a class="uq-logo" href="https://www.uq.edu.au" aria-label="The University of Queensland">
+        <!-- Replace with approved DAM asset if available -->
+        <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false">
+          <rect width="36" height="36" rx="6" fill="#51247A"></rect>
+        </svg>
+      </a>
+      <div class="uq-site-id">
+        <span class="uq-site-id__faculty">Faculty of Business, Economics &amp; Law</span>
+        <span class="uq-site-id__hub">Teaching &amp; Learning Hub</span>
+      </div>
+      <nav class="uq-utility" aria-label="Utility">
+        <a href="#support">Contact</a>
+        <a href="https://bel.uq.edu.au" target="_blank" rel="noopener">BEL website</a>
+        <a href="https://about.uq.edu.au/faculties-institutes/bel" target="_blank" rel="noopener">&nbsp;</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <header class="hero-header">
+    <div class="hero-content">
+      <div class="hero-badge">Faculty of Business, Economics &amp; Law</div>
+      <h1 class="hero-title">Teaching &amp; Learning Hub</h1>
+      <p class="hero-subtitle">Your comprehensive resource for teaching, learning, and assessment excellence at UQ</p>
+
+      <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem 2rem; border-radius: 16px; margin: 2rem auto 0; max-width: 900px; border: 2px solid rgba(255,255,255,0.2);">
+        <p style="font-size: 1.1rem; line-height: 1.8; margin: 0;">
+          <strong>👋 Welcome!</strong> This hub is your first port of call for teaching and learning questions.
+          Please explore the resources here before reaching out to our administrative team. If you can't find what you need, contact your
+          <strong>BEL Education Team</strong>
+          (<a href="mailto:education@bel.uq.edu.au" style="color: var(--uq-gold); text-decoration: underline;">education@bel.uq.edu.au</a>)
+          who is here to support you.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Quick links -->
+  <div class="quick-links">
+    <a href="#assessment-principles" class="quick-link-card">
+      <span class="quick-link-icon">📚</span>
+      <h3 class="quick-link-title">Assessment Principles</h3>
+      <p class="quick-link-desc">UQ’s ten principles with implementation guidance</p>
+    </a>
+    <a href="#secure-assessment" class="quick-link-card">
+      <span class="quick-link-icon">🔒</span>
+      <h3 class="quick-link-title">Secure Assessment</h3>
+      <p class="quick-link-desc">Design assessment with integrity and security</p>
+    </a>
+    <a href="#ai-resources" class="quick-link-card">
+      <span class="quick-link-icon">🤖</span>
+      <h3 class="quick-link-title">AI &amp; Assessment</h3>
+      <p class="quick-link-desc">Best practices and pedagogical approaches</p>
+    </a>
+  </div>
+
+  <div class="container">
+    <!-- ===== Assessment Principles (Stacked full-width, numbered circles, back-to-top) ===== -->
+    <section id="assessment-principles" class="section" aria-labelledby="ap-title">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <div>
+          <h2 id="ap-title" class="section-title">UQ Assessment Principles</h2>
+          <p class="section-subtitle"><strong>Add descriptor here</strong></p>
+        </div>
+      </div>
+
+      <!-- Scoped styles for numbered circles and stacked layout -->
+      <style>
+        /* ===== Stacked full-width list with visible purple number circles ===== */
+        ol.ap-ol {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          counter-reset: ap-counter;
+        }
+        ol.ap-ol > li {
+          counter-increment: ap-counter;
+          display: grid;
+          grid-template-columns: 40px 1fr; /* number circle + card */
+          gap: 12px;
+          align-items: start;
+          margin-bottom: 1.25rem;
+          width: 100%;
+        }
+        /* Purple circular number badge */
+        ol.ap-ol > li::before {
+          content: counter(ap-counter);
+          width: 36px;
+          height: 36px;
+          min-width: 36px;
+          border-radius: 50%;
+          background: var(--uq-purple);
+          color: var(--uq-white);
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          line-height: 1;
+          margin-top: 4px; /* aligns top with card header */
+          box-shadow: 0 2px 6px rgba(81,36,122,.18);
+        }
+        details.ap-accordion {
+          width: 100%;
+          border: 1px solid var(--bel-divider);
+          border-radius: 12px;
+          background: #fff;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        details.ap-accordion > summary {
+          padding: 14px 18px;
+          font-weight: 700;
+          background: var(--uq-cloud);
+          color: var(--uq-purple);
+          cursor: pointer;
+          border-radius: 12px;
+          list-style: none;
+        }
+        details.ap-accordion[open] > summary {
+          border-bottom: 1px solid var(--bel-divider);
+          border-radius: 12px 12px 0 0;
+        }
+        .ap-panel { padding: 1rem 1.2rem; overflow-x: auto; }
+        .ap-panel table {
+          width: 100%;
+          border-collapse: collapse;
+          min-width: 520px;
+        }
+        .ap-panel th, .ap-panel td {
+          border: 1px solid #ddd;
+          padding: 10px;
+          vertical-align: top;
+          text-align: left;
+        }
+        .uq-header { background: #4B2577; color: #fff; font-weight: 700; }
+      </style>
+
+      <div style="background: white; padding: 1.5rem; border-radius: 12px;">
+        <ol class="ap-ol" aria-label="Ten UQ assessment principles">
+
+          <!-- 1 -->
+          <li>
+            <details id="ap-1" class="ap-accordion">
+              <summary>Assessment is a developmental activity</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>                     
+                        <p>&#x25CF; Engage students in timely, meaningful learning activities.
+                        <p>&#x25CF; Develop students’ capacity to judge the quality of their own and others’ work.
+                      </td>
+                    <td>
+                      
+                        <p>&#x25CF; Select assessment forms based on suitability for intended learning outcomes.
+                        <p>&#x25CF; Minimum weighting of 10% for any assessment item.
+                        <p>&#x25CF; 2–4 summative assessment items per course; one may be a sequenced item worth ≥10%.
+                        <p>&#x25CF; When pedagogically justified, more than 4 items (including another sequence) may be considered by the BEL‑ADA.
+                        <p>&#x25CF; No marks for attendance; focus on performance quality (e.g., quality of participation or contribution to group outcomes).
+                      </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top" aria-label="Back to top of Assessment Principles">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 2 -->
+          <li>
+            <details id="ap-2" class="ap-accordion">
+              <summary>Assessment involves mutual responsibility</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Orient students to assessment methods and standards.
+                        <p>&#x25CF; Provide timely opportunities for students to demonstrate learning.
+						<p>&#x25CF; Support learning progression through effective feedback.
+                        <p>&#x25CF; Help students understand their responsibility to evidence.
+                       </td>
+                    <td>
+                      <ul>
+                        <li>Use student‑friendly descriptions of assessment items and submission requirements.</li>
+                        <li>Enable sense‑making of criteria/standards so students can judge their own efforts.</li>
+                        <li>Provide meaningful, timely feedback (aim for a 2‑week turnaround).</li>
+                        <li>Use early, formative (“low stakes”) assessment where appropriate (e.g., by Census date).</li>
+                        <li><strong>Peer review is required for all team tasks.</strong></li>
+                        <li><em>Variance only in consultation with the Program Convenor.</em></li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 3 -->
+          <li>
+            <details id="ap-3" class="ap-accordion">
+              <summary>Assessment is criterion‑referenced</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Judge each student’s performance against explicit and predetermined criteria and standards.
+                      </td>
+                    <td>
+                       <p>&#x25CF; Specify and explain criteria and standards for each assessment item.
+                        <p>&#x25CF; Make criteria sheets accessible by the end of Week 1.
+                        <p>&#x25CF; Progressively moderate to ensure consistent judgements across the cohort.
+                        <p>&#x25CF; Ideally, two markers assess performance/presentation items together; otherwise record the item.
+                        <p>&#x25CF; Award final grades in line with the UQ Grading System.
+                        <p>&#x25CF; Enable demonstration across a range of competencies (e.g., 1–7 scale or equivalent).
+                      </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 4 -->
+          <li>
+            <details id="ap-4" class="ap-accordion">
+              <summary>Assessment is transparent</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Ensure explicit, logical relationships between items, criteria/standards, and grades.
+                      </td>
+                    <td>
+                       <p>&#x25CF; Align criteria sheets to support the completion of set tasks.
+                        <p>&#x25CF; Achieve consistent, fair, reliable, and valid results.
+                        <p>&#x25CF; <strong>Hurdles must serve a genuine purpose</strong>; link to an item only after consultation and approval by the Program Leader.
+                        <p>&#x25CF; <strong>Tasks must enable demonstration at all grade levels</strong> (e.g., 7, 6, 5).
+                      </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 5 -->
+          <li>
+            <details id="ap-5" class="ap-accordion">
+              <summary>Assessment is valid</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Reliably measure intended learning outcomes with consistent evidence of performance.
+                     </td>
+                    <td>
+                        <p>&#x25CF; Design items that generate valid evidence of learning.
+                        <p>&#x25CF; Weightings reflect the importance of outcomes assessed.
+                        <p>&#x25CF; Avoid over‑assessing the same outcomes.
+                        <p>&#x25CF; <strong>Short‑response items (e.g., MCQ) limited to 25%*</strong> of overall assessment; use less frequently at higher levels of study.</li>
+                        <p>&#x25CF; Prevent passing grades via memorisation/reproduction of previous items.
+                        <p>&#x25CF; Provide a range of learning opportunity from minimum to highest standards.
+                        <p>&#x25CF; <em>*Variance only in consultation with the Program Convenor.</em>
+                      </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 6 -->
+          <li>
+            <details id="ap-6" class="ap-accordion">
+              <summary>Assessment is authentic</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                        <p>&#x25CF; Provide appropriate, meaningful, and worthwhile accomplishments.
+                        <p>&#x25CF; >Where possible, require demonstration of knowledge/skills used in real‑world settings.
+                     </td>
+                    <td>
+                       <p>&#x25CF; Ensure items authentically reflect intended learning outcomes.
+                        <p>&#x25CF; Design group assessment only where the task requires genuine collaboration.
+                     </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 7 -->
+          <li>
+            <details id="ap-7" class="ap-accordion">
+              <summary>Assessment is fair and inclusive</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Respect and accommodate diverse needs so students can engage with outcomes.
+                        <p>&#x25CF; Support equitable engagement with content, format, and conduct; avoid unfair advantage/disadvantage.
+                      </td>
+                    <td>
+                        <p>&#x25CF; Vary forms of assessment across the Program and within courses.
+                        <p>&#x25CF; No single item (including sequences; excluding theses/projects) exceeds 60% of the final grade.
+                        <p>&#x25CF; Do not use a single form (e.g., exams/quizzes/tests) to assess all learning outcomes.
+                        <p>&#x25CF; Students can apply for extensions <strong>[See UQBS resource: ECP Guidelines]</strong>.
+                     </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 8 -->
+          <li>
+            <details id="ap-8" class="ap-accordion">
+              <summary>Assessment is a purposeful, professional activity</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                       <p>&#x25CF; Integrate assessment into course/program design, review, and evaluation.
+                        <p>&#x25CF; Ensure quality assurance and moderation at course, school, and faculty levels.
+                        <p>&#x25CF; Collaborate to provide whole‑of‑program coherence.
+                        <p>&#x25CF; Commit to ongoing revision and enhancement of practice.
+                      </td>
+                    <td>
+                        <p>&#x25CF; Course Coordinators liaise with Program Leaders so ECPs reflect intended experiences.
+                       <p>&#x25CF; At semester end, Course Coordinators submit course reflections to Program Leaders <strong>[See UQBS resource: Course Reflections]</strong>                    
+                    </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 9 -->
+          <li>
+            <details id="ap-9" class="ap-accordion">
+              <summary>Assessment is sustainable and workable</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p>&#x25CF; Resource assessment so it is achievable for teachers and students.
+                      </td>
+                    <td>
+                        <p>&#x25CF; Design relative to available and appropriate resources.
+                        <p>&#x25CF; Direct additional resources to courses trialling/implementing innovations.
+                        <p>&#x25CF; Align word/time limits with expectations and weighting.
+                        <p>&#x25CF; No School‑based examinations (including in‑class quizzes) during the final two teaching weeks.
+                        <p>&#x25CF; No assessment held or due during the revision period <strong>[See UQ Academic Calendar]</strong>.
+                     </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+          <!-- 10 -->
+          <li>
+            <details id="ap-10" class="ap-accordion">
+              <summary>Assessment is secure</summary>
+              <div class="ap-panel">
+                <table>
+                  <tr class="uq-header">
+                    <th style="width:40%">Assessment Design</th>
+                    <th>In Practice</th>
+                  </tr>
+                  <tr>
+                    <td>
+                       <p>&#x25CF; Provide a verified measure of student performance at the program level.
+                        <p>&#x25CF; Help students uphold integrity and ethical standards.
+                      </td>
+                    <td>
+                       <p>&#x25CF; Design and conduct assessment with due regard to integrity and security to minimise misconduct.
+                        <p>&#x25CF; See <a href="https://policies.uq.edu.au/download.php?id=1315&amp;version=1&amp;associated" target="_blank" rel="noopener">Assessment Security Guidelines</a>. Updated guidance is provided on the <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/teaching-students-use-ai-responsibly" target="_blank" rel="noopener">AI Teacher Hub</a>.
+                      </td>
+                  </tr>
+                </table>
+                <a href="#ap-title" class="back-to-top">Back to top</a>
+              </div>
+            </details>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Secure Assessment ===== -->
+    <section id="secure-assessment" class="section">
+      <div class="section-header">
+        <span class="section-icon">🔒</span>
+        <div>
+          <h2 class="section-title">Secure Assessment</h2>
+          <p class="section-subtitle">Ensuring academic integrity and authentic student performance</p>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(81,36,122,.08) 0%, rgba(253,183,26,.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--uq-gold); border-radius: 12px; margin-bottom: 2rem; font-style: italic;">
+        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--uq-ink);">
+          "Assessment is not about you as a teacher; it is about your students and their learning." <br/>
+          <span style="font-size: .9rem; opacity: .8;">— Damian Cooper</span>
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h4>🎯 UQ Assessment Security Framework</h4>
+        <p>Security is assessed at the program/plan level to ensure graduating students have genuinely completed their studies. Not all assessment items need maximum security — the key is strategic planning across the program.</p>
+        <div style="margin-top: 1rem;">
+          <span class="tag important">Policy Update</span>
+          <span class="info-pill">📄 PPL 3.10.02 Assessment Procedures</span>
+        </div>
+      </div>
+
+      <div class="two-column">
+        <div>
+          <h3 style="font-family: 'Crimson Pro', serif; color: var(--uq-purple); margin-bottom: 1rem;">Secure Assessment Strategies</h3>
+          <ul class="checklist">
+            <li><strong>Supervised Tasks:</strong> Invigilated exams and in‑class assessments</li>
+            <li><strong>Secure Questioning:</strong> Student discussions about submitted work in supervised conditions</li>
+            <li><strong>Scaffolded Submission:</strong> Samples of work developed in supervised settings</li>
+            <li><strong>Real‑time Completion:</strong> Entire tasks completed under supervision</li>
+            <li><strong>Viva Voce:</strong> Oral examination components</li>
+            <li><strong>Corroboration:</strong> Work verified by trusted observers</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 style="font-family: 'Crimson Pro', serif; color: var(--uq-purple); margin-bottom: 1rem;">Assessment Hurdles</h3>
+          <p style="margin-bottom: 1rem;">Hurdles are assessment requirements that must be satisfied to receive a specific grade. Use the three principles:</p>
+          <div class="highlight-box" style="margin: 0;">
+            <p><strong>1. Critical Competency &amp; Security:</strong> Add hurdles only when essential for learning outcomes or to securely assure professional competencies</p>
+            <p><strong>2. Reasonable Standards:</strong> Set achievable thresholds that demonstrate competency without unnecessary stress</p>
+            <p><strong>3. Clear Communication:</strong> Explicitly state hurdle requirements, rationale, and consequences in course profiles from day one</p>
+          </div>
+          <div style="margin-top: 1.5rem; background: rgba(81,36,122,.08); padding: 1rem; border-radius: 8px;">
+            <p style="margin-bottom: .5rem;"><strong>Faculty‑Specific Hurdle Guidance:</strong></p>
+            <p style="font-size: .95rem; margin-bottom: .5rem;">Check with your Faculty for specific hurdle implementation expectations. Examples include:</p>
+            <ul style="margin-left: 1.5rem; font-size: .95rem; line-height: 1.8;">
+              <li><strong>Medicine:</strong> Performance hurdles vs compliance hurdles</li>
+              <li><strong>Your Faculty:</strong> Contact your Associate Dean (Academic) for faculty‑specific hurdle guidance</li>
+            </ul>
+            <div class="resource-links" style="margin-top: 1rem;">
+              <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" target="_blank" rel="noopener"><span>📋</span> Hurdle Design Principles</a>
+              <a class="resource-link" href="https://policies.uq.edu.au/document/view-current.php?id=184" target="_blank" rel="noopener"><span>📄</span> Assessment Procedure (Hurdles)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+		
+<div style="margin-top: 1.5rem; background: rgba(81,36,122,.08); padding: 1rem; border-radius: 8px;">
+      <p style="margin-bottom: .5rem;"><strong>Question and prompt guide for interactive oral assessments (IOA)</strong></p>
+            
+            <ul style="margin-left: 1.5rem; font-size: .95rem; line-height: 1.8;">
+              
+      </ul>
+            <div class="resource-links" style="margin-top: 1rem;">
+              <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" target="_blank" rel="noopener"><span>📋</span> IOA Guidelines</a>
+              
+            </div>
+      </div>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Making Assessment Meaningful</h3>
+          <p>Students are more likely to maintain integrity when assessment is relevant, engaging, and challenging. Design tasks that connect to real‑world applications and learning goals.</p>
+          <div class="resource-links" style="margin-top: 1rem;">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment" target="_blank" rel="noopener"><span>💡</span> Assessment Design</a>
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment/authentic-assessment" target="_blank" rel="noopener"><span>🎯</span> Authentic Assessment</a>
+          </div>
+          <span class="tag">Best Practice</span>
+        </div>
+
+        <div class="resource-card">
+          <h3>Technology for Security</h3>
+          <p>Use Turnitin for similarity checking, Inspera for secure exams, and Learn.UQ features for electronic submission with timestamp verification.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://elearning.uq.edu.au/staff-guides-original/inspera-assessment/academic-integrity-assessment-security-inspera-original" target="_blank" rel="noopener"><span>🛠️</span> Inspera Guide</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Grade Protection</h3>
+          <p>Protect assessment integrity through password protection, change tracking, secure storage, and regular review for manipulation attempts.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://ppl.app.uq.edu.au/content/protecting-grade-integrity-guidelines" target="_blank" rel="noopener"><span>🛡️</span> Grade Integrity</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Assessment Examples</h3>
+          <p>Explore discipline‑specific examples of secure assessment implementation from across UQ faculties.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" target="_blank" rel="noopener"><span>💡</span> View Examples</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)"><span>Assessment Security Guidelines — Full Framework</span><span>▼</span></div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>Teaching staff must give due regard to assessment integrity and security to minimise academic misconduct. Incorporate these elements:</strong></p>
+              <ol style="margin-left: 1.5rem; line-height: 2;">
+                <li>Design meaningful, relevant, and engaging assessment tasks</li>
+                <li>Provide clear expectations about assessment requirements and academic integrity</li>
+                <li>Use class time to discuss assessment scope, genre, and cognitive demands</li>
+                <li>Identify situations where misconduct is likely and implement preventive approaches</li>
+                <li>Support students who may find themselves under pressure</li>
+                <li>Monitor assessment outcomes and effectiveness regularly</li>
+                <li>Ensure assessment design prevents memorisation/reproduction from leading to passing grades</li>
+              </ol>
+
+              <div style="background: linear-gradient(135deg, rgba(81,36,122,.10) 0%, rgba(81,36,122,.15) 100%); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--uq-purple); margin-bottom: 1.5rem;">
+                <p style="font-size: 1.1rem; font-weight: 600; color: var(--uq-purple); margin-bottom: .8rem;">📌 Important Context — Don't Panic!</p>
+                <p style="margin-bottom: .8rem;">These are <strong>recommended guidelines for faculty‑level program assessment</strong>, not mandatory requirements for every individual course. Here's what this means:</p>
+                <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: .8rem;">
+                  <li><strong>Program‑level, not course‑level:</strong> Security is evaluated across an entire program/plan</li>
+                  <li><strong>Faculty decides thresholds:</strong> Your Associate Dean (Academic), Heads of School, and program convenors set specific requirements</li>
+                  <li><strong>Flexibility by design:</strong> Some assessment items will prioritise goals other than security</li>
+                  <li><strong>Not a universal mandate:</strong> Check with your Associate Dean (Academic) or program convenor for program requirements</li>
+                </ul>
+                <p style="margin: 0; font-style: italic; font-size: .95rem;">From Semester 2, 2025, every course should include <strong>at least one</strong> secure assessment item — this is the main course‑level requirement.</p>
+              </div>
+
+              <h4 style="margin: 1.5rem 0 1rem; color: var(--uq-purple);">Program‑Level Security Assessment</h4>
+              <p style="margin-bottom: 1rem;">For program/plan convenors: Security is evaluated at the program/plan level using these <strong>recommended criteria</strong> (adjustable by faculty):</p>
+              <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                <li><strong>Program level:</strong> Minimum of 75% of core courses are secure</li>
+                <li><strong>Program level:</strong> Minimum of 67% of flexible core courses are secure</li>
+              </ul>
+
+              <h4 style="margin: 1.5rem 0 1rem; color: var(--uq-purple);">Course‑Level Security Options</h4>
+              <p style="margin-bottom: 1rem;">A course is considered secure if it meets ONE of these three options:</p>
+              <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+                <li><strong>Option 1:</strong> 30% high security assessment (by weighting) that is also a hurdle; <strong>OR</strong></li>
+                <li><strong>Option 2:</strong> 50% high security assessment (by weighting); <strong>OR</strong></li>
+                <li><strong>Option 3:</strong> 70% medium security assessment (by weighting)</li>
+              </ul>
+
+              <div class="resource-links" style="margin-top: 1.5rem;">
+                <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/assessment/academic-integrity/assessment-security-guidelines" target="_blank" rel="noopener"><span>📄</span> Full Security Guidelines</a>
+                <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" target="_blank" rel="noopener"><span>🔒</span> Securing Assessment Guide</a>
+                <a class="resource-link" href="https://policies.uq.edu.au/document/view-current.php?id=184" target="_blank" rel="noopener"><span>📄</span> Assessment Procedure</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI in Teaching & Learning ===== -->
+    <section id="ai-resources" class="section">
+      <div class="section-header">
+        <span class="section-icon">🤖</span>
+        <div>
+          <h2 class="section-title">AI in Teaching &amp; Learning</h2>
+          <p class="section-subtitle">Navigate the AI landscape with confidence and pedagogical insight</p>
+        </div>
+      </div>
+
+      <div style="background: linear-gradient(135deg, rgba(81,36,122,.08) 0%, rgba(81,36,122,.08) 100%); padding: 1.5rem 2rem; border-left: 4px solid var(--uq-purple); border-radius: 12px; margin-bottom: 2rem; font-style: italic;">
+        <p style="font-size: 1.05rem; line-height: 1.8; margin: 0; color: var(--uq-ink);">
+          "The art of teaching is the art of assisting discovery." <br/>
+          <span style="font-size: .9rem; opacity: .8;">— Mark Van Doren</span>
+        </p>
+        <p style="margin-top: 1rem; font-size: .95rem; font-style: normal; opacity: .9;">
+          As we navigate AI in education, our role as facilitators of authentic learning becomes even more vital.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h4>🎯 Lead Through Learning 2025–2027</h4>
+        <p>UQ's AI Education Action Plan provides a framework for supporting teaching staff and students in responsible AI use. Key updates include enhanced guidance on AI‑permitted and secure assessment design.</p>
+        <span class="tag new">Updated 2025</span>
+        <span class="tag ai">Priority Initiative</span>
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Understanding AI</h3>
+          <p>Foundational knowledge about Generative AI, Machine Translation, and how students are using these tools in their learning journey.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/introducing-ai-and-what-students-think-about-it" target="_blank" rel="noopener"><span>📖</span> Introduction to AI</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>AI Rules &amp; Academic Integrity</h3>
+          <p>Clear expectations for AI use in assessment, acknowledgment requirements, and strategies for supporting student integrity.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/generative-ai-teaching-learning-and-assessment/rules-using-ai-assessment" target="_blank" rel="noopener"><span>📋</span> Assessment Rules</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Teaching Responsible AI Use</h3>
+          <p>Ethical considerations, classroom discussions, and frameworks for helping students use AI as an effective learning tool.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/teaching-students-use-ai-responsibly" target="_blank" rel="noopener"><span>🎓</span> Ethics &amp; Teaching</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>AI Tools &amp; Training</h3>
+          <p>Access to UQ‑provided AI tools, training resources, and professional development opportunities for staff.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/ai-access-and-training" target="_blank" rel="noopener"><span>🛠️</span> Tools &amp; Resources</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Student AI Hub Resources</span><span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <p><strong>The AI Student Hub provides comprehensive guidance for students on responsible AI use:</strong></p>
+              <ul class="checklist">
+                <li>Understanding when and how to use AI ethically in their studies</li>
+                <li>UQ's rules for using AI in assessment tasks</li>
+                <li>Proper acknowledgment and referencing of AI tools</li>
+                <li>Critical evaluation of AI‑generated content</li>
+                <li>Using AI to enhance learning rather than replace it</li>
+                <li>Access to Microsoft Copilot and Adobe Creative Cloud training</li>
+              </ul>
+              <p style="margin-top: 1rem;"><strong>Key Hub Sections:</strong></p>
+              <div class="resource-links" style="margin-top: 1rem;">
+                <a class="resource-link" href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub" target="_blank" rel="noopener"><span>🎯</span> Main AI Student Hub</a>
+                <a class="resource-link" href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ai-for-assessment" target="_blank" rel="noopener"><span>📝</span> AI for Assessment</a>
+                <a class="resource-link" href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/acknowledge-and-reference-ai-use" target="_blank" rel="noopener"><span>📚</span> Acknowledge &amp; Reference</a>
+                <a class="resource-link" href="https://guides.library.uq.edu.au/tools-and-techniques/ai-student-hub/ethical-and-responsible-ai-use" target="_blank" rel="noopener"><span>⚖️</span> Ethical AI Use</a>
+              </div>
+              <p style="margin-top: 1rem; font-style: italic; color: var(--uq-stone);">💡 Share these resources with your students in course materials and class discussions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>Designing for AI: Open vs Secure Assessment</span><span>▼</span>
+          </div>
+          <div class="accordion-content">
+            <div class="accordion-body">
+              <h4 style="margin-bottom: 1rem;">Open Assessment (AI‑Permitted)</h4>
+              <p style="margin-bottom: .5rem;">Students can use AI tools transparently with proper acknowledgment. Design considerations:</p>
+              <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li>Set clear expectations about AI acknowledgment requirements in course profile</li>
+                <li>Model effective AI use through scaffolded prompts and examples</li>
+                <li>Use Microsoft Copilot to simulate AI's role in completing tasks</li>
+                <li>Design tasks requiring synthesis, application, and critical thinking beyond AI capabilities</li>
+                <li>Consider tasks that ask students to evaluate, critique, or improve AI‑generated content</li>
+              </ul>
+
+              <h4 style="margin-bottom: 1rem;">Secure Assessment (AI‑Restricted)</h4>
+              <p style="margin-bottom: .5rem;">Assessment designed to verify independent student learning without AI assistance:</p>
+              <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                <li><strong>Supervised tasks:</strong> In‑class exams, invigilated assessments</li>
+                <li><strong>Oral components:</strong> Viva voce, presentations with Q&amp;A</li>
+                <li><strong>Real‑time demonstrations:</strong> Practical skills, live problem‑solving</li>
+                <li><strong>Scaffolded submissions:</strong> Work developed progressively in supervised settings</li>
+              </ul>
+
+              <div style="background: rgba(253, 183, 26, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                <p><strong>⚠️ Important Policy Update:</strong> From Semester 2, 2025, every course must include at least one secure assessment item. Plan your assessment strategy accordingly.</p>
+              </div>
+
+              <div class="resource-links" style="margin-top: 1.5rem;">
+                <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/designing-and-securing-assessment" target="_blank" rel="noopener"><span>📋</span> Full Design Guidance</a>
+                <a class="resource-link" href="https://itali.uq.edu.au/files/33171/AdaptingRubricsForOpenAssessment.pdf" target="_blank" rel="noopener"><span>📄</span> Open Assessment Guide (PDF)</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Teaching & Learning Guidance ===== -->
+    <section id="teaching-guidance" class="section">
+      <div class="section-header">
+        <span class="section-icon">📚</span>
+        <div>
+          <h2 class="section-title">Teaching &amp; Learning Guidance</h2>
+          <p class="section-subtitle">Comprehensive resources for effective course coordination</p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Getting Ready to Teach</h3>
+          <p>Essential preparation activities, Ready to Teach Week resources, and semester startup checklists for course coordinators.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/getting-ready-teach" target="_blank" rel="noopener"><span>🚀</span> Start Here</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Assessment Design</h3>
+          <p>Comprehensive guidance on designing valid, authentic, and inclusive assessment. Includes rubrics, feedback strategies, and group work support.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/assessment" target="_blank" rel="noopener"><span>📋</span> Assessment Hub</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Curriculum Design &amp; Review</h3>
+          <p>Tools and frameworks for program‑level curriculum mapping, course alignment, and collaborative curriculum development.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/curriculum-design-and-review" target="_blank" rel="noopener"><span>🗺️</span> Curriculum Making</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Teaching Practices</h3>
+          <p>Evidence‑based pedagogical approaches including active learning, problem‑based learning, collaborative learning, and reflective practice.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/teaching-practices" target="_blank" rel="noopener"><span>🎯</span> Explore Practices</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Principles of Learning</h3>
+          <p>Foundational understanding of how students learn, cognitive load theory, motivation, and designing for deep learning outcomes.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/principles-of-learning" target="_blank" rel="noopener"><span>🧠</span> Learning Theory</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Learning Spaces &amp; Modes</h3>
+          <p>Optimize physical and virtual learning environments. Guidance on blended learning, online teaching, and effective use of UQ facilities.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/learning-spaces-and-modes" target="_blank" rel="noopener"><span>🏛️</span> Space Design</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Indigenising Curriculum</h3>
+          <p>Resources and support for embedding Indigenous Australian knowledges, perspectives, and pedagogies throughout your courses.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/indigenising-curriculum" target="_blank" rel="noopener"><span>🪃</span> Indigenous Pedagogy</a>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Digital Learning Tools</h3>
+          <p>Master Learn.UQ (Blackboard), Zoom, collaborative tools, and innovative eLearning approaches to enhance student engagement.</p>
+          <div class="resource-links">
+            <a class="resource-link" href="https://elearning.uq.edu.au/guides" target="_blank" rel="noopener"><span>💻</span> eLearning Guides</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <h4>🎓 Professional Development Opportunities</h4>
+        <p>Enhance your teaching expertise through UQ's professional learning programs:</p>
+        <div class="resource-links" style="margin-top: 1rem;">
+          <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/professional-learning-programs/teaching-practice" target="_blank" rel="noopener">Teaching in Practice</a>
+          <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/professional-learning-programs/curriculum-design-uq" target="_blank" rel="noopener">Curriculum Design@UQ</a>
+          <a class="resource-link" href="https://itali.uq.edu.au/events/workshops" target="_blank" rel="noopener">Workshops &amp; Short Courses</a>
+        </div>
+      </div>
+
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)"><span>Course Evaluation &amp; Feedback</span><span>▼</span></div>
+          <div class="accordion-content"><div class="accordion-body">
+            <p><strong>UQ uses SECaT (Student Evaluation of Course and Teaching) and SETutor surveys to gather student feedback.</strong></p>
+            <p style="margin: 1rem 0;">The Course Evaluations System Replacement Project is upgrading the platform to provide better insights and more actionable feedback for teaching improvement.</p>
+            <h4 style="margin-top: 1.5rem; margin-bottom: .8rem; color: var(--uq-purple);">Beyond SECaTs: Building Your Teaching Evidence Base</h4>
+            <p style="margin-bottom: 1rem;">Student evaluations are just one form of evidence. Consider building a comprehensive portfolio including:</p>
+            <ul style="margin-left: 1.5rem; line-height: 1.8; margin-bottom: 1.5rem;">
+              <li>Peer observation reports from Open Course Scheme</li>
+              <li>Teaching innovations and curriculum redesign projects</li>
+              <li>Student success data and learning analytics</li>
+              <li>Teaching awards, grants, and fellowship applications</li>
+              <li>Reflective teaching statements and philosophy</li>
+            </ul>
+            <div class="resource-links">
+              <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/evaluation-of-teaching" target="_blank" rel="noopener"><span>📊</span> Evaluation Resources</a>
+              <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/evaluation-teaching/course-evaluations-system-replacement-project" target="_blank" rel="noopener"><span>🔄</span> System Replacement</a>
+              <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/peer-support/open-course-scheme" target="_blank" rel="noopener"><span>👥</span> Peer Observation</a>
+            </div>
+          </div></div>
+        </div>
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)"><span>Co‑Creating with Students</span><span>▼</span></div>
+          <div class="accordion-content"><div class="accordion-body">
+            <p style="margin-bottom: 1rem;"><strong>Engage students as partners in teaching and learning through four approaches:</strong></p>
+            <ul style="margin-left: 1.5rem; line-height: 2;">
+              <li><strong>Partnership Classroom:</strong> Co‑creation with all enrolled students</li>
+              <li><strong>Pedagogical Consultation:</strong> Selected students provide real‑time feedback</li>
+              <li><strong>Curriculum Co‑Design:</strong> Redesign with student input</li>
+              <li><strong>Knowledge Co‑Creation:</strong> Student research contributing to new knowledge</li>
+            </ul>
+            <h4 style="margin-top: 1.5rem; margin-bottom: .8rem; color: var(--uq-purple);">Support for Co‑Creation</h4>
+            <p style="margin-bottom: 1rem;">UQ's Student‑Staff Partnerships (SSP) projects enable co‑design with students in a supportive community with financial grants for student participation.</p>
+            <div style="margin-top: 1rem;" class="resource-links">
+              <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/curriculum-design-and-review/transforming-curriculum/co-creating-curriculum-students" target="_blank" rel="noopener"><span>🤝</span> Co‑Creation Guide</a>
+              <a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/initiatives/student-staff-partnerships" target="_blank" rel="noopener"><span>💡</span> SSP Projects</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Additional Resources ===== -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-icon">🎯</span>
+        <div>
+          <h2 class="section-title">Additional Resources for Course Coordinators</h2>
+          <p class="section-subtitle">Essential tools and support services</p>
+        </div>
+      </div>
+
+      <div class="resource-grid">
+        <div class="resource-card">
+          <h3>Teaching &amp; Assessment Updates</h3>
+          <p>Stay current with the latest policy changes, guidelines, and initiatives affecting teaching at UQ.</p>
+          <div class="resource-links"><a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/teaching-assessment-updates" target="_blank" rel="noopener"><span>📰</span> Latest Updates</a></div>
+          <span class="tag important">Check Regularly</span>
+        </div>
+
+        <div class="resource-card">
+          <h3>Peer Support Programs</h3>
+          <p>Connect with colleagues through Open Course Scheme (peer observation), Communities of Practice, and mentoring opportunities.</p>
+          <div class="resource-links"><a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/teaching-career-development/peer-support" target="_blank" rel="noopener"><span>👥</span> Peer Networks</a></div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Learning Analytics</h3>
+          <p>Use data‑driven insights to understand student engagement, identify at‑risk students, and improve course design based on evidence.</p>
+          <div class="resource-links"><a class="resource-link" href="https://itali.uq.edu.au/digital-learning/learning-analytics" target="_blank" rel="noopener"><span>📈</span> Analytics Tools</a></div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Awards, Grants &amp; Fellowships</h3>
+          <p>Recognition and funding for teaching innovation through UQ Teaching Awards, grants, and fellowships.</p>
+          <div class="resource-links"><a class="resource-link" href="https://itali.uq.edu.au/advancing-teaching/awards-grants-fellowships" target="_blank" rel="noopener"><span>🏆</span> Opportunities</a></div>
+        </div>
+
+        <div class="resource-card">
+          <h3>Supporting Diverse Learners</h3>
+          <p>Inclusive teaching practices, reasonable adjustments, accessibility guidelines, and strategies for supporting diverse needs.</p>
+          <span class="tag">Inclusive Practice</span>
+        </div>
+
+        <div class="resource-card">
+          <h3>UQ Learning &amp; Student Experience Roadmap</h3>
+          <p>Align your course with UQ's strategic direction for educational excellence (2024–2032).</p>
+          <div class="resource-links" style="margin-top: 1rem;">
+            <a class="resource-link" href="https://teaching-learning.uq.edu.au/about-us/mission-strategy/learning-student-experience-roadmap" target="_blank" rel="noopener"><span>🎯</span> Roadmap Overview</a>
+            <a class="resource-link" href="https://about.uq.edu.au/sites/default/files/2024-12/Learning-Student-Experience-Roadmap.pdf" target="_blank" rel="noopener"><span>📄</span> Download PDF</a>
+          </div>
+          <span class="info-pill">🎯 Strategic Alignment</span>
+        </div>
+
+        <div class="resource-card">
+          <h3>Assessment Ideas Factory</h3>
+          <p>Browse innovative assessment examples across disciplines; filter by class size, security level, and assessment type.</p>
+          <div class="resource-links" style="margin-top: 1rem;">
+            <a class="resource-link" href="https://aif.itali.uq.edu.au/" target="_blank" rel="noopener"><span>💡</span> Browse Ideas</a>
+            <a class="resource-link" href="https://itali.uq.edu.au/teaching-guidance/assessment/designing-assessment/authentic-assessment" target="_blank" rel="noopener"><span>🎯</span> Authentic Assessment</a>
+          </div>
+          <span class="tag new">Curated Examples</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Professional Development & Events ===== -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-icon">📅</span>
+        <div>
+          <h2 class="section-title">Professional Development &amp; Upcoming Events</h2>
+          <p class="section-subtitle">Strategic professional learning opportunities for course coordinators</p>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="background: linear-gradient(135deg, rgba(81,36,122,0.10) 0%, rgba(253,183,26,0.10) 100%); border-left-color: var(--uq-purple);">
+        <h4>🚀 Ready to Teach Week Semester 1, 2026</h4>
+        <p style="font-size: 1.05rem; margin-bottom: 1rem;"><strong>9–13 February 2026</strong> — A comprehensive program to prepare you for the upcoming semester</p>
+        <span class="tag important">Registration Open</span>
+        <span class="tag new">Hybrid Format</span>
+      </div>
+
+      <div class="highlight-box" style="margin-top: 2rem; background: linear-gradient(135deg, rgba(81,36,122,0.10) 0%, rgba(81,36,122,0.10) 100%); border-left-color: var(--uq-purple);">
+        <h4>📝 Registration &amp; Program Details</h4>
+        <p style="margin-bottom: 1rem;">Most sessions are free and available to all UQ teaching staff. Some hands‑on workshops have limited capacity — register early.</p>
+        <div class="resource-links">
+          <a class="resource-link" href="https://uqevents.eventsair.com/ready-to-teach-week-semester-1-2026/registrationform" target="_blank" rel="noopener"><span>✅</span> Register Now</a>
+          <a class="resource-link" href="https://itali.uq.edu.au/files/33174/Ready-to-Teach-Week-Semester-1-2026-Program.pdf" target="_blank" rel="noopener"><span>📄</span> Download Full Program (PDF)</a>
+          <a class="resource-link" href="https://itali.uq.edu.au/events/ready-to-teach-week" target="_blank" rel="noopener"><span>🔗</span> View All Sessions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Supporting All Students ===== -->
+    <section class="section">
+      <div class="section-header">
+        <span class="section-icon">🧲</span>
+        <div>
+          <h2 class="section-title">Supporting All Students: Wellbeing &amp; Essential Services</h2>
+          <p class="section-subtitle">Resources to help you support students from diverse backgrounds and circumstances</p>
+        </div>
+      </div>
+
+        <div class="highlight-box" style="background: linear-gradient(135deg, rgba(81,36,122,.10) 0%, rgba(11,125,86,.10) 100%); border-left-color: var(--uq-purple);">
+          <h4>🍽️ Food Security Support — Share with Students in Need</h4>
+          <p>Many students face food insecurity. UQ Union provides free and low‑cost food support.</p>
+        </div>
+    </section>
+
+    <!-- ===== Closing Quote ===== -->
+    <div style="background: linear-gradient(135deg, rgba(81, 36, 122, 0.10) 0%, rgba(81,36,122,0.10) 100%); padding: 2.5rem 2rem; margin: 3rem auto; max-width: 1200px; border-radius: 16px; text-align: center; box-shadow: 0 4px 20px rgba(81,36,122,0.10);">
+      <p style="font-size: 1.3rem; line-height: 1.8; font-style: italic; color: var(--uq-purple); margin: 0;">
+        "A teacher affects eternity; they can never tell where their influence stops."
+      </p>
+      <p style="font-size: 1rem; margin-top: .8rem; opacity: .8;">— Henry Adams</p>
+      <p style="font-size: 1rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; color: var(--uq-ink);">
+        Thank you for your dedication to student learning and your commitment to teaching excellence.
+      </p>
+    </div>
+
+    <!-- ===== Contact / Support ===== -->
+    <section id="support" class="contact-section">
+      <h2>Get Support &amp; Stay Connected</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: .95;">ITaLI is here to support your teaching excellence journey</p>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>✉️ General Enquiries</h3>
+          <p><a href="mailto:itali@uq.edu.au">itali@uq.edu.au</a></p>
+          <p style="margin-top: .5rem;">+61 7 3365 2788</p>
+        </div>
+
+        <div class="contact-card">
+          <h3>🎯 Request Help</h3>
+          <p>Consultations, course design support, learning design assistance, and technical guidance.</p>
+          <p style="margin-top: .8rem;"><a href="https://itali.uq.edu.au/contact/request-help" target="_blank" rel="noopener">Submit Request</a></p>
+        </div>
+
+        <div class="contact-card">
+          <h3>📍 Visit Us</h3>
+          <p>Learning and Innovation Building (17)</p>
+          <p>UQ St Lucia Campus</p>
+          <p style="margin-top: .8rem;"><a href="https://maps.uq.edu.au/?campusId=406&zLevel=0&zoom=18&identifier=cef37662-2ee8-4d58-bf53-d07d07e375ed" target="_blank" rel="noopener">View Map</a></p>
+        </div>
+
+        <div class="contact-card">
+          <h3>🧾 Stay Informed</h3>
+          <p>Subscribe to the UQ Teaching Community Update for latest news, resources, and opportunities.</p>
+          <p style="margin-top: .8rem;"><a href="http://www.vision6.com.au/em/forms/subscribe.php?db=486997&s=204482&a=80386&k=rAG4BMVHw1rVcD9VLg7Iv8T5N_c5fR_WtXlKVNDH3eY" target="_blank" rel="noopener">Subscribe</a></p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid rgba(255,255,255,0.2);">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">Assessment Transformation Support</h3>
+        <p style="margin-bottom: 1rem; opacity: .95;">Need help redesigning assessment for AI or implementing secure assessment strategies? Connect with an Assessment Transformation Learning Designer.</p>
+        <a href="https://itali.uq.edu.au/teaching-guidance/ai-teacher-hub/ai-access-and-training" class="resource-link" style="background: white; color: var(--uq-purple); border-color: white;" target="_blank" rel="noopener">
+          <span>💡</span> Connect with Learning Designer
+        </a>
+      </div>
+    </section>
+
+    <div class="last-updated">
+      Last updated: February 2026<br/>
+      <span style="margin-top: .5rem; display: block;">For the most current information, always refer to the official ITaLI website and UQ Policy and Procedures Library</span>
+    </div>
+  </div>
+
+  <!-- UQ Footer -->
+  <footer class="uq-footer" role="contentinfo">
+    <div class="uq-footer__inner">
+      <section class="uq-ack">
+        <h2 class="sr-only">Acknowledgement of Country</h2>
+        <p>The University of Queensland acknowledges the Traditional Owners and their custodianship of the lands on which UQ is situated.</p>
+      </section>
+
+      <nav class="uq-footer-nav" aria-label="Footer">
+        <a href="https://bel.uq.edu.au" target="_blank" rel="noopener">BEL website</a>
+        <a href="https://about.uq.edu.au/faculties-institutes/bel" target="_blank" rel="noopener">About BEL</a>
+        <a href="https://staff.uq.edu.au/information-and-services/communications-marketing/uq-brand" target="_blank" rel="noopener">UQ brand</a>
+        <a href="https://policies.uq.edu.au/document/view-current.php?id=358" target="_blank" rel="noopener">Brand procedure</a>
+        <a href="https://www.uq.edu.au/privacy" target="_blank" rel="noopener">Privacy</a>
+        <a href="#support">Contact</a>
+      </nav>
+
+      <div class="uq-meta">
+        <p>&copy; The University of Queensland. CRICOS Provider Number 00025B.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cloudflare email decode (optional) -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+  <script>
+    // Accordion toggle for custom accordion blocks (not <details>)
+    function toggleAccordion(header) {
+      try {
+        const content = header.nextElementSibling;
+        const arrow = header.querySelector('span:last-child');
+        if (content && arrow) {
+          content.classList.toggle('active');
+          arrow.textContent = content.classList.contains('active') ? '▲' : '▼';
+        }
+      } catch (error) {
+        console.error('Accordion error:', error);
+      }
+    }
+
+    // Init on DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href.length > 1) {
+              const target = document.querySelector(href);
+              if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }
+          });
+        });
+
+        // Animate sections/cards on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.section, .resource-card').forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity .6s ease, transform .6s ease';
+          observer.observe(el);
+        });
+      } catch (error) {
+        console.error('Initialization error:', error);
+      }
+    });
+  </script>
+
+  <!-- Optional secondary GA -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag2(){ dataLayer.push(arguments); }
+    gtag2('js', new Date());
+    gtag2('config', 'YOUR-GA-ID');
+  </script>
+	<div id="floating-back-to-top" role="button" aria-label="Back to top">
+  ↑ Back to top
+</div>
+	<script>
+  // Floating back-to-top button behaviour
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("floating-back-to-top");
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 400)
+</body>
+</html>
