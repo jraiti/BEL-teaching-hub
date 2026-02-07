@@ -41,7 +41,7 @@
       font-family:'Work Sans',-apple-system,BlinkMacSystemFont,sans-serif;
       color:var(--uq-ink); background:var(--page-bg); line-height:1.6; min-height:100vh;
     }
-    a{color:var(--bel-link); text-decoration:none}
+    a, a:visited { color: var(--uq-purple); text-decoration:none }
     a:hover{color:var(--uq-purple); text-decoration:underline}
     .sr-only{position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden}
 
@@ -58,11 +58,11 @@
     .uq-site-id{display:flex; flex-direction:column; line-height:1.2}
     .uq-site-id__faculty{font-weight:700; color:var(--uq-purple)}
     .uq-site-id__hub{font-weight:500; color:var(--uq-ink); opacity:.9}
-    .uq-utility a{margin-left:1rem; font-size:.95rem}
+    .uq-utility a, a:visited { color: var(--uq-purple); text-decoration:none }
     @media (max-width:768px){
       .uq-masthead__inner{grid-template-columns:1fr; gap:.5rem}
       .uq-utility{display:flex; flex-wrap:wrap; gap:.75rem}
-      .uq-utility a{margin-left:0}
+      .uq-utility a, a:visited { color: var(--uq-purple); text-decoration:none }
     }
 
     /* =========================================================
@@ -144,9 +144,9 @@
     .uq-footer__inner{max-width:1400px; margin:0 auto; padding:2rem}
     .uq-ack{font-size:.95rem; opacity:.9; margin-bottom:1rem}
     .uq-footer-nav{display:flex; flex-wrap:wrap; gap:.75rem 1.25rem; margin:1rem 0}
-    .uq-footer-nav a{color:#EEE; text-decoration:none; font-size:.95rem}
+    .uq-footer-nav a, a:visited { color: var(--uq-purple); text-decoration:none }
     .uq-footer-nav a:hover{color:var(--uq-gold)}
-    .uq-meta{font-size:.9rem; opacity:.8}
+    .uq-meta, a:visited { color: var(--uq-purple); text-decoration:none }
 
     /* Floating back-to-top */
     #floating-back-to-top{
